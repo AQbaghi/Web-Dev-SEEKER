@@ -1,0 +1,22 @@
+{
+  "name": "web-dev-seaker",
+  "version": "1.0.0",
+  "description": "A MongoDB, Express, React, and Node.js web-app for people who want to land their first job in the Web-Dev Industy",
+  "main": "index.js",
+  "scripts": {
+    "client-install": "cd client && npm install",
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "client": "cd client && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\" "
+  },
+  "author": "AbdalQader Baghi",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^5.2.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
