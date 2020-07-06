@@ -25,6 +25,54 @@ class App extends Component {
           <Route path="/login" component={Login} />
           <Route path="/user" component={User} />
         </Switch>
+        <p>
+          If I click on a navigation link, I can see that the slug has changed
+          but the component is not rendering. I have to manually refresh the
+          page in order to see the component, while the page should re-render by
+          itself on route/slug change.
+        </p>
+        <p>
+          If I click on a navigation link, I can see that the slug has changed
+          but the component is not rendering. I have to manually refresh the
+          page in order to see the component, while the page should re-render by
+          itself on route/slug change.
+        </p>
+        <p>
+          If I click on a navigation link, I can see that the slug has changed
+          but the component is not rendering. I have to manually refresh the
+          page in order to see the component, while the page should re-render by
+          itself on route/slug change.
+        </p>
+        <p>
+          If I click on a navigation link, I can see that the slug has changed
+          but the component is not rendering. I have to manually refresh the
+          page in order to see the component, while the page should re-render by
+          itself on route/slug change.
+        </p>
+        <p>
+          If I click on a navigation link, I can see that the slug has changed
+          but the component is not rendering. I have to manually refresh the
+          page in order to see the component, while the page should re-render by
+          itself on route/slug change.
+        </p>
+        <p>
+          If I click on a navigation link, I can see that the slug has changed
+          but the component is not rendering. I have to manually refresh the
+          page in order to see the component, while the page should re-render by
+          itself on route/slug change.
+        </p>
+        <p>
+          If I click on a navigation link, I can see that the slug has changed
+          but the component is not rendering. I have to manually refresh the
+          page in order to see the component, while the page should re-render by
+          itself on route/slug change.
+        </p>
+        <p>
+          If I click on a navigation link, I can see that the slug has changed
+          but the component is not rendering. I have to manually refresh the
+          page in order to see the component, while the page should re-render by
+          itself on route/slug change.
+        </p>
       </div>
     );
   }

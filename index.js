@@ -1,17 +1,22 @@
+const path = require('path');
 const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+require('./src-server-side/DB/mongooseDB.js');
+const userRouter = require('./src-server-side/routers/userAPI.js');
 
+//setting up express
+const port = process.env.PORT || 5000;
 const app = express();
 
-app.get('/api/jobs', (req, res) => {
-  const jobs = [
-    { id: 1, jobTitle: 'Web Developer' },
-    { id: 2, jobTitle: 'Software Engineer' },
-    { id: 3, jobTitle: 'Clown' },
-  ];
+//body parsing express
+app.use(bodyParser.json());
+app.use(express.json());
 
-  res.json(jobs);
-});
+//express route
+app.use(userRouter);
 
-app.listen(5000, () => {
-  console.log('Server up and running on port 5000');
+//listening to server port
+app.listen(port, () => {
+  console.log(`Server up and running on port ${port}`);
 });

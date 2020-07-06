@@ -41,20 +41,21 @@ const NavBar = () => {
                 Profile
               </Link>
             </li>
+            <li className="nav-item">
+              <input
+                className="form-control mr-sm-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button
+                className="btn btn-outline-primary my-2 my-sm-0"
+                type="submit"
+              >
+                Search
+              </button>
+            </li>
           </ul>
-
-          <input
-            className="form-control mr-sm-2"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <button
-            className="btn btn-outline-primary my-2 my-sm-0"
-            type="submit"
-          >
-            Search
-          </button>
         </form>
       </div>
     </nav>
