@@ -34,21 +34,14 @@ router.post('/api/users/login', async (req, res) => {
   }
 });
 
-router.delete('/api/users/deactivate', async (req, res) => {
+//delete user
+router.delete('/api/users/deactivate', auth, async (req, res) => {
   try {
-    User.findOneAndRemove(
-      {
-        email: req.body.email,
-        password: req.body.password,
-      },
-      (err, user) => {
-        if (user) {
-          return res.send({ success: 'user successfully deleted!' });
-        } else {
-          return res.status(404).send({ error: 'user no longer exists.' });
-        }
-      }
-    );
+    await req.user.delete();
+    res.send({
+      message: 'user has been succesfully deleted.',
+      userInfo: req.user,
+    });
   } catch (err) {
     res.status(500).send(err);
   }
@@ -60,6 +53,58 @@ router.get('/api/user/me', auth, (req, res) => {
     res.send(req.user);
   } catch {
     res.status(400).send(err);
+  }
+});
+
+//update user info
+router.patch('/api/users/update', auth, async (req, res) => {
+  const change = req.body;
+
+  // validation to updates
+  const allowedUpdates = ['firstName', 'lastName', 'email', 'password'];
+  const updates = Object.keys(req.body);
+  const isValidOperation = updates.every((update) =>
+    allowedUpdates.includes(update)
+  );
+  if (!isValidOperation) {
+    return res
+      .status(400)
+      .send({ error: 'you can only update a valid user entery' });
+  }
+  try {
+    updates.forEach((update) => (req.user[update] = change[update]));
+    await req.user.save();
+    res.send(req.user);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+//logout user
+router.post('/api/users/logout', auth, async (req, res) => {
+  try {
+    console.log(req.user.tokens);
+    req.user.tokens = req.user.tokens.filter((token) => {
+      console.log(token);
+      if (token.token !== req.token) {
+        return token;
+      }
+    });
+    await req.user.save();
+    res.send();
+  } catch (err) {
+    res.status(500).send();
+  }
+});
+
+//logout all users
+router.post('/api/users/logoutall', auth, async (req, res) => {
+  try {
+    req.user.tokens = [];
+    await req.user.save();
+    res.send();
+  } catch (err) {
+    res.status(500).send();
   }
 });
 
