@@ -42,17 +42,49 @@ const UserSchema = new mongoose.Schema({
       }
     },
   },
+  tokens: [
+    {
+      token: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
 });
 
 //middleware______________________________________________________________________________________
 
-//password encryption using bcrypt
+//password encryption using bcrypt when signing up
 UserSchema.pre('save', async function (next) {
   const user = this;
-  const hashedPassword = await bcrypt.hash(user.password, 8);
-  user.password = hashedPassword;
+  if (user.isModified('password')) {
+    const hashedPassword = await bcrypt.hash(user.password, 8);
+    user.password = hashedPassword;
+  }
   next();
 });
+
+//logging in user with email and password user middleware-mongoose-schema
+UserSchema.statics.findByCredentials = async function (email, password) {
+  const user = await User.findOne({ email });
+  if (!email) {
+    throw new Error('unable to login user');
+  }
+  const isMatch = await bcrypt.compare(password, user.password);
+  if (!isMatch) {
+    throw new Error('unable to login user');
+  }
+  return user;
+};
+
+// instance middleware before signing up and logging in jwt genirator
+UserSchema.methods.genirateAuthToken = async function () {
+  const user = this;
+  const token = jwt.sign({ _id: user._id.toString() }, 'theSecret');
+  //save token to the database
+  user.tokens = user.tokens.concat({ token });
+  return token;
+};
 
 const User = mongoose.model('User', UserSchema);
 

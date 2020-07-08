@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import NavBar from './Components/Nav/NavBar.js';
 import Jobs from './Components/Jobs/Jobs.js';
 import ApplyJob from './Components/ApplyJob/ApplyJob.js';
