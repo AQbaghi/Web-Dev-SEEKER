@@ -1,3 +1,4 @@
 node_modules
 client/node_moduler
 sec-server-side/config
+.env

@@ -80,7 +80,7 @@ UserSchema.statics.findByCredentials = async function (email, password) {
 // instance middleware before signing up and logging in jwt genirator
 UserSchema.methods.genirateAuthToken = async function () {
   const user = this;
-  const token = jwt.sign({ _id: user._id.toString() }, 'theSecret');
+  const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET);
   //save token to the database
   user.tokens = user.tokens.concat({ token });
   return token;
