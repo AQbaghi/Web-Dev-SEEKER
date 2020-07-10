@@ -1,0 +1,26 @@
+const catagoryList = [
+  'Web Development',
+  'Software Engineer',
+  'Electrical Engineer',
+  'Electrical Technician',
+  'Waiter/Waitress',
+  'Deliviry Driver',
+  'Teacher',
+  'Graphic Designer',
+  'Customer Service',
+  'Chef',
+  'House Keeper',
+  'Pharmasist',
+  'Nurse',
+  'Doctor',
+  'Personal Trainer',
+  'Data Analysist',
+  'Civil Engineer',
+  'Mechanical Engineer',
+  'Chemical Engineer',
+  'Biological Engineer',
+  'Help Desk',
+  'Network Engineer',
+];
+
+module.exports = catagoryList;
