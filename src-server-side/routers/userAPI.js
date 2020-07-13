@@ -1,6 +1,8 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const multer = require('multer');
+const sharp = require('sharp');
 const User = require('../Models/User.js');
 const auth = require('../middleware/auth.js');
 const router = express.Router();
@@ -116,6 +118,70 @@ router.get('/api/users/show-all', (req, res) => {
     });
   } catch {
     res.status(400).send(err);
+  }
+});
+
+//avatar routes
+
+//avatar profile picture upload
+const avatar = multer({
+  limits: {
+    fileSize: 1000000,
+  },
+  fileFilter(req, file, cb) {
+    if (!file.originalname.match(/\.(jpg|png|jpeg)$/)) {
+      return cb(new Error('file must be an image'));
+    }
+    cb(undefined, true);
+  },
+});
+router.post(
+  '/api/users/me/avatar',
+  auth,
+  avatar.single('avatar'),
+  async (req, res) => {
+    const buffer = await sharp(req.file.buffer)
+      .resize({ width: 250, height: 250 })
+      .png()
+      .toBuffer();
+    req.user.avatar = buffer;
+    await req.user.save();
+    res
+      .status(201)
+      .send({ success: 'avatar picture was successfully uploaded' });
+  },
+  (err, req, res, next) => {
+    res.status(400).send({ error: err.message });
+  }
+);
+
+//avatar profile picture delete
+router.delete('/api/users/me/avatar', auth, async (req, res) => {
+  try {
+    if (!req.user.avatar) {
+      res
+        .status(400)
+        .send({ error: 'can not delete non existing avatar picture' });
+    }
+    req.user.avatar = undefined;
+    await req.user.save();
+    res.send({ success: 'avatar picture was successfully deleted' });
+  } catch (err) {
+    res.status(500).send({ error: 'can not delete avatar profile picture' });
+  }
+});
+
+//serving up an image
+router.get('/api/users/:id/avatar', async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user || !user.avatar) {
+      throw new Error('can not get picture');
+    }
+    res.set('Content-Type', 'image/jpg');
+    res.send(user.avatar);
+  } catch (err) {
+    res.send({ error: err.message });
   }
 });
 

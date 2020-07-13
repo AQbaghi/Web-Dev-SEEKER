@@ -18,10 +18,13 @@ router.post('/api/job/post', auth, async (req, res) => {
       JobOwner: _id,
       companyName,
     });
+
     await job.save();
     res.status(201).send(job);
   } catch (err) {
-    res.status(500).send(err);
+    res
+      .status(500)
+      .send({ error: 'can not create a job post before starting a company.' });
   }
 });
 
@@ -38,8 +41,14 @@ router.get('/api/job/info/:_id', async (req, res) => {
 
 //view all jobs --must include search and pagination
 router.get('/api/job/all-job', async (req, res) => {
+  //qury link example
+  // /api/job/all-job?limit=10&skip=0
+  let sortValue = -1;
   try {
-    const job = await Job.find({});
+    const job = await Job.find({})
+      .limit(parseInt(req.query.limit))
+      .skip(parseInt(req.query.skip))
+      .sort({ createdAt: sortValue });
     res.send(job);
   } catch (err) {
     res.status(400).send(err);
