@@ -33,7 +33,8 @@ router.get('/api/job/info/:_id', async (req, res) => {
   try {
     const _id = req.params._id;
     const job = await Job.findById(_id);
-    res.send(job);
+    const companyInfo = await Company.findOne({ _id: job.JobOwner });
+    res.send({ job, companyInfo });
   } catch (err) {
     res.status(400).send(err);
   }
@@ -42,7 +43,7 @@ router.get('/api/job/info/:_id', async (req, res) => {
 //view all jobs --must include search and pagination
 router.get('/api/job/all-job', async (req, res) => {
   //qury link example
-  // /api/job/all-job?limit=10&skip=0
+  // /api/job/all-job?limit=10&skip=0?catagory=WebDev
   let sortValue = -1;
   try {
     const job = await Job.find({})

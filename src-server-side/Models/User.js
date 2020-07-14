@@ -62,6 +62,10 @@ const UserSchema = new mongoose.Schema(
     avatar: {
       type: Buffer,
     },
+    ownesCompany: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,

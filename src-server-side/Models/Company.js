@@ -1,22 +1,30 @@
 const mongoose = require('mongoose');
 
-const JobSchema = new mongoose.Schema({
-  companyName: {
-    required: true,
-    type: String,
+const JobSchema = new mongoose.Schema(
+  {
+    companyName: {
+      required: true,
+      type: String,
+    },
+    description: {
+      required: true,
+      type: String,
+    },
+    location: {
+      type: String,
+    },
+    owner: {
+      type: String,
+      required: true,
+    },
+    avatar: {
+      type: Buffer,
+    },
   },
-  description: {
-    required: true,
-    type: String,
-  },
-  location: {
-    type: String,
-  },
-  owner: {
-    type: String,
-    required: true,
-  },
-});
+  {
+    timestamps: true,
+  }
+);
 
 const Company = mongoose.model('Company', JobSchema);
 
