@@ -42,3 +42,9 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background: #6649b8;
 }
+
+.page {
+  background-color: cadetblue;
+  margin: 0;
+  padding: 0;
+}

@@ -1,27 +1,16 @@
 import React, { Component } from 'react';
+import './jobs.css';
 
 class Jobs extends Component {
-  state = {
-    jobs: [],
-  };
-
-  async componentDidMount() {
-    const jobPromise = await fetch('/api/jobs');
-    const jobs = await jobPromise.json();
-    this.setState({
-      jobs,
-    });
-  }
-
   render() {
     return (
-      <div>
-        <h1>hello React!!</h1>
-        <ul>
-          {this.state.jobs.map((job) => (
-            <li key={job.id}>{job.jobTitle}</li>
-          ))}
-        </ul>
+      <div className="jobs no-outline">
+        <div className="search-form">
+          <input typr="text" name="search" autoComplete="off" required />
+          <label htmlFor="search" className="label-search">
+            <span className="content-search">Search</span>
+          </label>
+        </div>
       </div>
     );
   }

@@ -1,63 +1,46 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './NavBar.css';
+
+//third party
+// import { faHome } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const NavBar = () => {
+  const navButtonHandler = () => {
+    let navButton = document.querySelector('.navbar .navbar-button i');
+    let nav = document.querySelector('.navbar');
+    navButton.classList.toggle('closed-button');
+    nav.classList.toggle('closed');
+  };
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <button
-        className="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarTogglerDemo01"
-        aria-controls="navbarTogglerDemo01"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span className="navbar-toggler-icon"></span>
-      </button>
-      <a className="navbar-brand" href="">
-        Web-Dev SEEKER
-      </a>
-      <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <form className="form-inline my-2 my-lg-0">
-          <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li className="nav-item">
-              <Link className="nav-link" to="/">
-                Dashbaurd
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/Signup">
-                Signup
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/Jobs">
-                Find A Job!
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/User">
-                Profile
-              </Link>
-            </li>
-            <li className="nav-item">
-              <input
-                className="form-control mr-sm-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button
-                className="btn btn-outline-primary my-2 my-sm-0"
-                type="submit"
-              >
-                Search
-              </button>
-            </li>
-          </ul>
-        </form>
+    <nav className="navbar closed">
+      <div className="navbar-button" onClick={navButtonHandler}>
+        <i className="fa fa-bars closed-button" aria-hidden="true"></i>
       </div>
+      <ul>
+        <li>
+          <Link className="nav-link" to="/Signup">
+            Sign up
+          </Link>
+        </li>
+        <li>
+          <Link className="nav-link" to="/">
+            Jobs
+          </Link>
+        </li>
+        <li>
+          <Link className="nav-link" to="/">
+            Profile
+          </Link>
+        </li>
+        <li>
+          <Link className="nav-link" to="/">
+            Company
+          </Link>
+        </li>
+      </ul>
     </nav>
   );
 };
