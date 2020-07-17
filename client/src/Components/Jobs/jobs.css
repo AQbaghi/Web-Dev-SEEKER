@@ -111,6 +111,9 @@ body {
 /* the job post inself */
 
 .job-post {
+  display: block;
+  text-decoration: none;
+  color: #333;
   transition: 0.4s;
   background-color: white;
   margin: 0rem 0rem 1rem 0;
