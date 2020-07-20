@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { getJobsFromDB } from '../../store/actions/jobActions.js';
 import SearchBar from './SearchBar.js';
 import './jobs.css';
 
+//loaded is a variable to chech if the page loaded the job post data, if not the function will not be called again
+let loaded = false;
+
 class Jobs extends Component {
   JobDashBaurd = () => {
+    if (!loaded) {
+      this.props.getJobPosts();
+      loaded = true;
+    }
+
     return (
       <div className="jobs-dashbaurd">
         <div className="previous-searches">previous searches</div>
@@ -46,4 +55,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Jobs);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getJobPosts: () => {
+      dispatch(getJobsFromDB());
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Jobs);
