@@ -14,6 +14,7 @@ class Jobs extends Component {
       this.props.getJobPosts();
       loaded = true;
     }
+    console.log(this.props);
 
     return (
       <div className="jobs-dashbaurd">

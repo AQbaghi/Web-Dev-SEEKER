@@ -18,3 +18,23 @@ export const getJobDetailsFromDB = (ownProps) => {
     dispatch({ type: 'GET_JOB_POST_DETAILS', jobPostDetails: jobPostDetails });
   };
 };
+
+export const signupUserAccount = (formInfo) => {
+  return async (dispatch, getState) => {
+    const userAccountPropmise = await fetch('/api/users/signup', {
+      headers: {
+        Accept: 'application/json',
+        'Content-type': 'application/json',
+      },
+      method: 'POST',
+      body: JSON.stringify({
+        firstName: formInfo.firstName,
+        lastName: formInfo.lastName,
+        email: formInfo.email,
+        password: formInfo.password,
+      }),
+    });
+    const userAccount = await userAccountPropmise.json();
+    dispatch({ type: 'CREATE_USER_ACCOUNT', userAccount });
+  };
+};

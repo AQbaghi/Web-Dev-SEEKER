@@ -1,4 +1,10 @@
 const initState = {
+  userAccount: {
+    firstName: null,
+    lastName: null,
+    email: null,
+    password: null,
+  },
   jobPosts: [],
   jobPostDetails: {
     job: {
@@ -43,6 +49,15 @@ const rootReducer = (state = initState, action) => {
       ...state,
       jobPostDetails: action.jobPostDetails,
     };
+  }
+
+  if (action.type === 'CREATE_USER_ACCOUNT') {
+    state = {
+      ...state,
+      userAccount: action.userAccount,
+    };
+    console.log(state.userAccount.token);
+    document.cookie = `token=${state.userAccount.token}`;
   }
   return state;
 };
