@@ -35,6 +35,23 @@ export const signupUserAccount = (formInfo) => {
       }),
     });
     const userAccount = await userAccountPropmise.json();
+
     dispatch({ type: 'CREATE_USER_ACCOUNT', userAccount });
+  };
+};
+
+export const auth = (token) => {
+  return async (dispatch, getState) => {
+    const authenticatedPropmise = await fetch('/api/user/me', {
+      headers: {
+        Accept: 'application/json',
+        'Content-type': 'application/json',
+        Authorization: token.replace('token=', 'Bearer '),
+      },
+      method: 'GET',
+    });
+    const authenticatedUser = await authenticatedPropmise.json();
+
+    dispatch({ type: 'AUTHENTICATE_USER', authenticatedUser });
   };
 };

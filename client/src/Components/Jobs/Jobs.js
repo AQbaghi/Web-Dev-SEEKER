@@ -14,7 +14,6 @@ class Jobs extends Component {
       this.props.getJobPosts();
       loaded = true;
     }
-    console.log(this.props);
 
     return (
       <div className="jobs-dashbaurd">
@@ -51,8 +50,10 @@ class Jobs extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
     jobPosts: state.jobPosts,
+    authenticatedUser: state.userAccount,
   };
 };
 

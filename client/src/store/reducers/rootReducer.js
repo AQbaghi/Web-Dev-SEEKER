@@ -4,6 +4,8 @@ const initState = {
     lastName: null,
     email: null,
     password: null,
+    ownesCompany: null,
+    _id: null,
   },
   jobPosts: [],
   jobPostDetails: {
@@ -56,8 +58,15 @@ const rootReducer = (state = initState, action) => {
       ...state,
       userAccount: action.userAccount,
     };
-    console.log(state.userAccount.token);
     document.cookie = `token=${state.userAccount.token}`;
+    window.location.href = '/';
+  }
+
+  if (action.type === 'AUTHENTICATE_USER') {
+    state = {
+      ...state,
+      userAccount: action.authenticatedUser,
+    };
   }
   return state;
 };
