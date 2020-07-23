@@ -6,6 +6,7 @@ import NavBar from './Components/Nav/NavBar.js';
 import Jobs from './Components/Jobs/Jobs.js';
 import JobPost from './Components/Jobs/JobPost.js';
 import Signup from './Components/Signup-and-Login/Signup.js';
+import login from './Components/Signup-and-Login/Login.js';
 import './App.css';
 
 let authenticated = false;
@@ -40,7 +41,7 @@ class App extends Component {
           <Route exact path="/jobs" prop="this is the prop" component={Jobs} />
           <Route exact path="/jobs/:_id" component={JobPost} />
           <Route exact path="/signup" component={Signup} />
-          <Route exact path="/login" component={Signup} />
+          <Route exact path="/login" component={login} />
           <Route
             exact
             path="/logout"

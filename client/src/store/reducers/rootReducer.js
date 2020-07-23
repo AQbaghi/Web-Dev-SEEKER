@@ -62,6 +62,15 @@ const rootReducer = (state = initState, action) => {
     window.location.href = '/';
   }
 
+  if (action.type === 'LOGIN_USER_ACCOUNT') {
+    state = {
+      ...state,
+      userAccount: action.userAccount,
+    };
+    document.cookie = `token=${state.userAccount.token}`;
+    window.location.href = '/';
+  }
+
   if (action.type === 'AUTHENTICATE_USER') {
     state = {
       ...state,

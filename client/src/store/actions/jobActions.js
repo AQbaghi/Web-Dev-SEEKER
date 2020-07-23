@@ -40,6 +40,25 @@ export const signupUserAccount = (formInfo) => {
   };
 };
 
+export const loginUserAccount = (formInfo) => {
+  return async (dispatch, getState) => {
+    const userAccountPropmise = await fetch('/api/users/login', {
+      headers: {
+        Accept: 'application/json',
+        'Content-type': 'application/json',
+      },
+      method: 'POST',
+      body: JSON.stringify({
+        email: formInfo.email,
+        password: formInfo.password,
+      }),
+    });
+    const userAccount = await userAccountPropmise.json();
+
+    dispatch({ type: 'LOGIN_USER_ACCOUNT', userAccount });
+  };
+};
+
 export const auth = (token) => {
   return async (dispatch, getState) => {
     const authenticatedPropmise = await fetch('/api/user/me', {
