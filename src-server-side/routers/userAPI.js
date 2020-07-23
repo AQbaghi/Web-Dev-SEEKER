@@ -32,7 +32,7 @@ router.post('/api/users/login', async (req, res) => {
     await user.save();
     res.send({ user, token });
   } catch (err) {
-    res.status(400).send(err);
+    res.status(400).send({ error: 'invalid email or password.' });
   }
 });
 
@@ -85,9 +85,7 @@ router.patch('/api/users/update', auth, async (req, res) => {
 //logout user
 router.post('/api/users/logout', auth, async (req, res) => {
   try {
-    console.log(req.user.tokens);
     req.user.tokens = req.user.tokens.filter((token) => {
-      console.log(token);
       if (token.token !== req.token) {
         return token;
       }

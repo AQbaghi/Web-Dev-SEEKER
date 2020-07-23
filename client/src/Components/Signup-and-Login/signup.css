@@ -76,3 +76,15 @@ form {
   background-color: rgb(130, 5, 141);
   margin: 1.5rem 0 0 0.5rem;
 }
+
+.error-box {
+  width: 100%;
+  height: 2rem;
+  z-index: 1;
+  color: red;
+  background: white;
+}
+.error-box p {
+  text-align: center;
+  padding-top: 0.3rem;
+}

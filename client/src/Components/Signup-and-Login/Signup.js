@@ -30,6 +30,9 @@ class Signup extends Component {
           <div>
             <h1>Sign Up</h1>
           </div>
+          <div className="error-box">
+            <p>{this.props.error.message}</p>
+          </div>
           <div className="form">
             <input
               type="text"
@@ -90,12 +93,18 @@ class Signup extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    error: state.error,
+  };
+};
+
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     dispatchSignupInfo: (formState) => {
-      dispatch(signupUserAccount(formState));
+      dispatch(signupUserAccount(formState, ownProps));
     },
   };
 };
 
-export default connect(null, mapDispatchToProps)(Signup);
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

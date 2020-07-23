@@ -36,6 +36,7 @@ const initState = {
       __v: 0,
     },
   },
+  error: {},
 };
 
 const rootReducer = (state = initState, action) => {
@@ -59,7 +60,6 @@ const rootReducer = (state = initState, action) => {
       userAccount: action.userAccount,
     };
     document.cookie = `token=${state.userAccount.token}`;
-    window.location.href = '/';
   }
 
   if (action.type === 'LOGIN_USER_ACCOUNT') {
@@ -68,13 +68,21 @@ const rootReducer = (state = initState, action) => {
       userAccount: action.userAccount,
     };
     document.cookie = `token=${state.userAccount.token}`;
-    window.location.href = '/';
   }
 
   if (action.type === 'AUTHENTICATE_USER') {
     state = {
       ...state,
       userAccount: action.authenticatedUser,
+    };
+  }
+  if (action.type === 'CATCH_ERROR') {
+    if (action.userAccount) {
+      action.errorMessage = action.userAccount;
+    }
+    state = {
+      ...state,
+      error: action.errorMessage,
     };
   }
   return state;

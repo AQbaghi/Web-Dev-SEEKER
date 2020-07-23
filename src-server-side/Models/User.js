@@ -39,7 +39,9 @@ const UserSchema = new mongoose.Schema(
       type: String,
       validate(value) {
         if (value.length < 8) {
-          throw new Error('password must be 8 charectors or more');
+          throw new Error(
+            'must be 8 charectors or more, and contain uppercase and lowercase letters as well as numbers'
+          );
         }
       },
     },
@@ -75,13 +77,13 @@ const UserSchema = new mongoose.Schema(
 //middleware______________________________________________________________________________________
 
 //password encryption using bcrypt when signing up
-// UserSchema.pre('save', async function (next) {
-//   const user = this;
-//   if (user.isModified('password')) {
-//     user.password = await bcrypt.hash(user.password, 8);
-//   }
-//   next();
-// });
+UserSchema.pre('save', async function (next) {
+  const user = this;
+  if (user.isModified('password')) {
+    user.password = await bcrypt.hash(user.password, 8);
+  }
+  next();
+});
 
 //logging in user with email and password user middleware-mongoose-schema
 UserSchema.statics.findByCredentials = async function (email, password) {
@@ -91,11 +93,9 @@ UserSchema.statics.findByCredentials = async function (email, password) {
   }
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) {
-    console.log(password);
-    console.log(user.password);
     throw new Error('unable to login user');
   }
-  console.log(user);
+
   return user;
 };
 
