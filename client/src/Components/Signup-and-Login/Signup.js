@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { signupUserAccount } from '../../store/actions/jobActions.js';
+import { signupUserAccount } from '../../store/actions/userActions.js';
 import './signup.css';
 
 class Signup extends Component {
@@ -95,7 +95,7 @@ class Signup extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    error: state.error,
+    error: state.user.error,
   };
 };
 

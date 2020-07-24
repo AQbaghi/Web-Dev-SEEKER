@@ -51,8 +51,8 @@ class Jobs extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    jobPosts: state.jobPosts,
-    authenticatedUser: state.userAccount,
+    jobPosts: state.job.jobPosts,
+    authenticatedUser: state.job.userAccount,
   };
 };
 

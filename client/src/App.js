@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { auth } from './store/actions/jobActions.js';
+import { auth } from './store/actions/authActions.js';
 import NavBar from './Components/Nav/NavBar.js';
 import Jobs from './Components/Jobs/Jobs.js';
 import JobPost from './Components/Jobs/JobPost.js';
@@ -58,7 +58,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    authenticatedUser: state.userAccount,
+    authenticatedUser: state.auth.userAccount,
   };
 };
 
