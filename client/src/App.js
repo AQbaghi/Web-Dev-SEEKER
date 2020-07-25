@@ -7,9 +7,11 @@ import Jobs from './Components/Jobs/Jobs.js';
 import JobPost from './Components/Jobs/JobPost.js';
 import Signup from './Components/Signup-and-Login/Signup.js';
 import login from './Components/Signup-and-Login/Login.js';
+import StartCompany from './Components/Commany/StartCompany.js';
 import './App.css';
 
 let authenticated = false;
+let companyAuthenticated = false;
 
 class App extends Component {
   logout = async (token) => {
@@ -22,11 +24,17 @@ class App extends Component {
   };
 
   render() {
-    if (!this.props.authenticatedUser.email) {
+    if (!this.props.userAccount.email) {
       this.props.authenticateUser();
     }
-    if (this.props.authenticatedUser.email) {
+    if (this.props.userAccount.email) {
       authenticated = true;
+    }
+    if (this.props.userAccount.email && !this.props.userAccount.ownesCompany) {
+      this.props.authenticateUser();
+    }
+    if (this.props.userAccount.ownesCompany) {
+      companyAuthenticated = true;
     }
 
     return (
@@ -35,13 +43,15 @@ class App extends Component {
           signup={authenticated}
           login={authenticated}
           logout={authenticated}
+          companyAuthenticated={companyAuthenticated}
         />
         <Switch>
-          <Route exact path="/" prop="this is the prop" component={Jobs} />
-          <Route exact path="/jobs" prop="this is the prop" component={Jobs} />
+          <Route exact path="/" component={Jobs} />
+          <Route exact path="/jobs" component={Jobs} />
           <Route exact path="/jobs/:_id" component={JobPost} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/login" component={login} />
+          <Route exact path="/startcompany" component={StartCompany} />
           <Route
             exact
             path="/logout"
@@ -57,8 +67,9 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
-    authenticatedUser: state.auth.userAccount,
+    userAccount: state.auth.userAccount,
   };
 };
 

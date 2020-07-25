@@ -26,6 +26,7 @@ const userReducer = (state = initState, action) => {
       error: action.errorMessage,
     };
   }
+
   return state;
 };
 

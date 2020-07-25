@@ -13,15 +13,16 @@ router.post('/api/company/create', auth, async (req, res) => {
     ...req.body,
     owner: req.user._id,
   });
+
   try {
     if (req.user.ownesCompany === true) {
       return res
         .status(500)
         .send({ error: 'you are only allowd one company per user.' });
     }
+    await company.save();
     req.user.ownesCompany = true;
     await req.user.save();
-    await company.save();
     res.status(201).send(company);
   } catch (err) {
     res.status(400).send(err);

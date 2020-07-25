@@ -6,7 +6,7 @@ import './NavBar.css';
 // import { faHome } from '@fortawesome/free-solid-svg-icons';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const NavBar = ({ signup, login, logout }) => {
+const NavBar = ({ signup, login, logout, companyAuthenticated }) => {
   const navButtonHandler = () => {
     let navButton = document.querySelector('.navbar .navbar-button i');
     let nav = document.querySelector('.navbar');
@@ -15,7 +15,7 @@ const NavBar = ({ signup, login, logout }) => {
   };
 
   //lougout link
-  const logoutLink = () => {
+  const LogoutLink = () => {
     return (
       <li>
         <Link className="nav-link" to="/logout">
@@ -25,7 +25,7 @@ const NavBar = ({ signup, login, logout }) => {
     );
   };
   //signup link
-  const signupLink = () => {
+  const SignupLink = () => {
     return (
       <li>
         <Link className="nav-link" to="/Signup">
@@ -35,11 +35,41 @@ const NavBar = ({ signup, login, logout }) => {
     );
   };
   //signin link
-  const loginLink = () => {
+  const LoginLink = () => {
     return (
       <li>
         <Link className="nav-link" to="/login">
-          Sign in
+          Log in
+        </Link>
+      </li>
+    );
+  };
+  //start company link
+  const StartCompanyLink = () => {
+    return (
+      <li>
+        <Link className="nav-link" to="/startCompany">
+          Start a Company
+        </Link>
+      </li>
+    );
+  };
+  //Create Job Post Link
+  const CreateJobPostLink = () => {
+    return (
+      <li>
+        <Link className="nav-link" to="/createjobpost">
+          Create a Job Post
+        </Link>
+      </li>
+    );
+  };
+
+  const MyJobPostsLink = () => {
+    return (
+      <li>
+        <Link className="nav-link" to="/mycompany">
+          My Company
         </Link>
       </li>
     );
@@ -51,24 +81,23 @@ const NavBar = ({ signup, login, logout }) => {
         <i className="fa fa-bars closed-button" aria-hidden="true"></i>
       </div>
       <ul>
-        {signup ? null : signupLink()}
-        {login ? null : loginLink()}
+        {signup ? null : SignupLink()}
+        {login ? null : LoginLink()}
         <li>
           <Link className="nav-link" to="/">
             Jobs
           </Link>
         </li>
+        {login && !companyAuthenticated ? StartCompanyLink() : null}
+        {companyAuthenticated ? CreateJobPostLink() : null}
+        {companyAuthenticated ? MyJobPostsLink() : null}
         <li>
           <Link className="nav-link" to="/">
-            Profile
+            About
           </Link>
         </li>
-        <li>
-          <Link className="nav-link" to="/">
-            Company
-          </Link>
-        </li>
-        {logout ? logoutLink() : null}
+
+        {logout ? LogoutLink() : null}
       </ul>
     </nav>
   );
