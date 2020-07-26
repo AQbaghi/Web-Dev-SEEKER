@@ -54,19 +54,20 @@ const JobSchema = new mongoose.Schema(
   }
 );
 
-JobSchema.pre('save', async function (next) {
-  const job = this;
-  let catagoryExists = false;
-  for (let i = 0; i < catagoryList.length; i++) {
-    if (job.catagory === catagoryList[i]) {
-      catagoryExists = true;
-    }
-  }
-  if (catagoryExists === false) {
-    throw new Error({ error: 'The Catagory Selected, does not exist.' });
-  }
-  next();
-});
+// JobSchema.pre('save', async function (next) {
+//   const job = this;
+//   let catagoryExists = false;
+//   for (let i = 0; i < catagoryList.length; i++) {
+//     if (job.catagory === catagoryList[i]) {
+//       catagoryExists = true;
+//     }
+//   }
+//   if (catagoryExists === false) {
+//     console.log('lool');
+//     throw new Error({ error: 'The Catagory Selected, does not exist.' });
+//   }
+//   next();
+// });
 
 const Job = mongoose.model('Job', JobSchema);
 

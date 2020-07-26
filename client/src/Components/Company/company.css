@@ -1,0 +1,58 @@
+textarea {
+  border-radius: 5px;
+  width: 96%;
+  resize: none;
+  height: 8rem;
+  font-size: 1.1rem;
+}
+
+.textarea-form textarea:focus,
+.textarea-form textarea:valid {
+  border: solid #5fa8d3 3px;
+  outline: none;
+  border-radius: 5px;
+}
+
+.description-button {
+  border: none;
+  width: 7rem;
+  height: 2.3rem;
+  font-size: 0.7rem;
+  color: white;
+  background-color: rgb(111, 47, 117);
+  margin: 1.5rem 0 0 0.5rem;
+}
+
+.form-container div {
+  background-color: white;
+}
+
+.key-words {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+ul {
+  list-style: none;
+}
+.item-in-list {
+  display: block;
+
+  max-width: 36rem;
+  padding: 0.6rem 2rem;
+  margin: 0.1rem;
+  box-shadow: #aaa 1px 2px 2px 1px;
+  border-radius: 0 0 5px 5px;
+  min-width: 50px;
+  font-size: 1.2rem;
+  color: #666;
+  list-style: none;
+}
+
+.key-word {
+  padding: 0.4rem 1rem;
+  margin: 0.1rem;
+  background-color: rgb(122, 40, 129);
+  color: white;
+  list-style: none;
+}

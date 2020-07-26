@@ -20,11 +20,10 @@ router.post('/api/job/post', auth, async (req, res) => {
     });
 
     await job.save();
+    console.log(job);
     res.status(201).send(job);
   } catch (err) {
-    res
-      .status(500)
-      .send({ error: 'can not create a job post before starting a company.' });
+    res.status(500).send(err);
   }
 });
 

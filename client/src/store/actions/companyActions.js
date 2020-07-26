@@ -25,8 +25,38 @@ export const startCompany = (formInfo, ownProps) => {
       });
       return;
     }
-
+    console.log('company opened!');
     dispatch({ type: 'START_COMPANY', companyInfo });
+
+    ownProps.history.push('/');
+  };
+};
+
+export const cteareJobPost = (formState, ownProps) => {
+  return async (dispatch, getState) => {
+    const token = document.cookie;
+
+    console.log(
+      JSON.stringify({
+        ...formState,
+      })
+    );
+
+    //creating the company requiest
+    const jobPostPropmise = await fetch('/api/job/post', {
+      headers: {
+        Accept: 'application/json',
+        'Content-type': 'application/json',
+        Authorization: token.replace('token=', 'Bearer '),
+      },
+      method: 'POST',
+      body: JSON.stringify({
+        ...formState,
+      }),
+    });
+    const jobPost = await jobPostPropmise.json();
+    console.log(jobPost);
+    dispatch({ type: 'POST_JOB', jobPost });
 
     ownProps.history.push('/');
   };

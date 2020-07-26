@@ -7,7 +7,8 @@ import Jobs from './Components/Jobs/Jobs.js';
 import JobPost from './Components/Jobs/JobPost.js';
 import Signup from './Components/Signup-and-Login/Signup.js';
 import login from './Components/Signup-and-Login/Login.js';
-import StartCompany from './Components/Commany/StartCompany.js';
+import StartCompany from './Components/Company/StartCompany.js';
+import CreateJonPost from './Components/Company/CreateJob.js';
 import './App.css';
 
 let authenticated = false;
@@ -52,6 +53,7 @@ class App extends Component {
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/login" component={login} />
           <Route exact path="/startcompany" component={StartCompany} />
+          <Route exact path="/createjobpost" component={CreateJonPost} />
           <Route
             exact
             path="/logout"

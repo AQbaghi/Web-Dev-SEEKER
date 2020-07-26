@@ -61,13 +61,13 @@ class StartCompany extends Component {
           <div className="form">
             <input
               type="text"
-              name="companyLocation"
-              id="companyLocation"
+              name="location"
+              id="location"
               required
               autoComplete="off"
               onChange={this.inputChangeHandler}
             />
-            <label htmlFor="companyLocation" className="label-name">
+            <label htmlFor="location" className="label-name">
               <span className="content-name">Company Location</span>
             </label>
           </div>

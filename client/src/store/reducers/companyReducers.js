@@ -8,6 +8,12 @@ const companyReducer = (state = initState, action) => {
       userAccount: action.authenticatedUser,
     };
   }
+  if (action.type === 'POST_JOB') {
+    state = {
+      ...state,
+      jobPost: action.jobPost,
+    };
+  }
   if (action.type === 'CATCH_COMPANY_ERROR') {
     state = {
       ...state,
