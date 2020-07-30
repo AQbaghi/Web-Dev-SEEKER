@@ -15,6 +15,8 @@ let requiredSkills = [];
 let responsabilities = [];
 let advantages = [];
 
+//variables to check if input forms were inputted
+
 class CreateJobPost extends Component {
   state = {
     jobTitle: null,
@@ -34,7 +36,6 @@ class CreateJobPost extends Component {
         keyWord = e.target.value;
         break;
       case 'requiredSkills':
-        console.log('lol');
         requiredSkill = e.target.value;
         break;
       case 'responsabilities':
@@ -52,7 +53,7 @@ class CreateJobPost extends Component {
 
   submitHandler = (e) => {
     e.preventDefault();
-    console.log(this.state);
+
     this.setState(() => {
       //checking if input exists to add in array to set state with new array value
       if (keyWord) {
@@ -71,6 +72,7 @@ class CreateJobPost extends Component {
         advantages = [...this.state.advantages, advantage];
         advantage = null;
       }
+
       //returning the values in the state, for one or for all new values
       return {
         ...this.state,
@@ -89,7 +91,20 @@ class CreateJobPost extends Component {
 
   submitFormHandler = (e) => {
     e.preventDefault();
-    this.props.dispatchJobPostInfo(this.state);
+
+    //variables for if certain inputs have content in them
+    let a = document.getElementById('jobTitle').value;
+    let b = document.getElementById('jobDescription').value;
+    let c = document.getElementById('salary').value;
+    if (a && b && c) {
+      this.props.dispatchJobPostInfo(this.state);
+    } else {
+      //set the error
+      document
+        .querySelector('.error-message-job-post')
+        .setAttribute('class', 'error-message-job-post-on');
+      window.scrollTo(0, 0);
+    }
   };
 
   render() {
@@ -100,6 +115,10 @@ class CreateJobPost extends Component {
           <div>
             <h1>Create a Job Post</h1>
           </div>
+
+          <p className="error-message-job-post">
+            Please complete all filling all the input feilds.
+          </p>
 
           <div className="form">
             <input
@@ -258,7 +277,7 @@ class CreateJobPost extends Component {
           </form>
 
           <button
-            className="signup-login-button"
+            className="signup-login-button createJobButton"
             onClick={this.submitFormHandler}
           >
             Submit
@@ -285,31 +304,3 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateJobPost);
-
-{
-  /* <div className="form">
-<input
-  type="text"
-  name="catagory"
-  list="jobCatagoty"
-  id="catagory"
-  required
-  autoComplete="off"
-  onChange={this.inputChangeHandler}
-/>
-<datalist id="jobCatagoty">
-  <option>web development</option>
-  <option>cloud engineer</option>
-  <option>electrical engineer</option>
-  <option>graphic designer</option>
-  <option>network engineer</option>
-  <option>penatration tester</option>
-  <option>customer service</option>
-  <option>help desk</option>
-  <option>software engineer</option>
-</datalist>
-<label htmlFor="catagory" className="label-name">
-  <span className="content">catagory</span>
-</label>
-</div> */
-}

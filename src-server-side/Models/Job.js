@@ -7,6 +7,12 @@ const JobSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    keyWords: [
+      {
+        required: true,
+        type: String,
+      },
+    ],
     jobTitle: {
       required: true,
       type: String,

@@ -1,3 +1,5 @@
+import { auth } from './authActions.js';
+
 export const signupUserAccount = (formInfo, ownProps) => {
   return async (dispatch, getState) => {
     const userAccountPropmise = await fetch('/api/users/signup', {
@@ -32,6 +34,7 @@ export const signupUserAccount = (formInfo, ownProps) => {
     }
 
     dispatch({ type: 'CREATE_USER_ACCOUNT', userAccount });
+    dispatch(auth(document.cookie));
     ownProps.history.push('/');
   };
 };
@@ -58,6 +61,25 @@ export const loginUserAccount = (formInfo, ownProps) => {
     }
 
     dispatch({ type: 'LOGIN_USER_ACCOUNT', userAccount });
+    dispatch(auth(document.cookie));
     ownProps.history.push('/');
+  };
+};
+
+//display my profile details
+export const getMyProfileFromDb = () => {
+  return async (dispatch, getState) => {
+    const token = document.cookie;
+
+    //getting my profile details along with my jobs if any
+    const myProfilePropmise = await fetch('/api/company/me', {
+      headers: {
+        Authorization: token.replace('token=', 'Bearer '),
+      },
+      method: 'GET',
+    });
+    const myProfile = await myProfilePropmise.json();
+
+    dispatch({ type: 'GET_MY_COMPANY', myProfile });
   };
 };

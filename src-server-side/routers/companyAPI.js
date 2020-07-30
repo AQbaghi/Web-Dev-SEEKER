@@ -2,6 +2,7 @@ const express = require('express');
 const multer = require('multer');
 const sharp = require('sharp');
 const Company = require('../Models/Company.js');
+const Jobs = require('../Models/Job.js');
 const auth = require('../middleware/auth.js');
 const router = express.Router();
 
@@ -9,6 +10,7 @@ const router = express.Router();
 
 // create Company
 router.post('/api/company/create', auth, async (req, res) => {
+  console.log(7);
   const company = new Company({
     ...req.body,
     owner: req.user._id,
@@ -31,9 +33,19 @@ router.post('/api/company/create', auth, async (req, res) => {
 
 //read profile
 router.get('/api/company/me', auth, async (req, res) => {
+  console.log(8);
   try {
-    const company = await Company.find({ owner: req.user._id });
-    res.send(company);
+    const company = await Company.findOne({ owner: req.user._id });
+  } catch (err) {
+    res.send({ user: req.user });
+  }
+  try {
+    const companyJobs = await Jobs.find({ companyName: company.companyName });
+  } catch (err) {
+    res.send({ user: req.user, company });
+  }
+  try {
+    res.send({ user: req.user, company, companyJobs });
   } catch (err) {
     res.status(400).send(err);
   }

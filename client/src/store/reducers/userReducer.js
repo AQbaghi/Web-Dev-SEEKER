@@ -17,6 +17,13 @@ const userReducer = (state = initState, action) => {
     document.cookie = `token=${state.userAccount.token}`;
   }
 
+  if (action.type === 'GET_MY_PROFILE') {
+    state = {
+      ...state,
+      myCompany: action.myCompany,
+    };
+  }
+
   if (action.type === 'CATCH_ERROR') {
     if (action.userAccount) {
       action.errorMessage = action.userAccount;

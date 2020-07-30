@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { signupUserAccount } from '../../store/actions/userActions.js';
+
 import './signup.css';
 
 class Signup extends Component {
@@ -26,7 +27,7 @@ class Signup extends Component {
     return (
       <div className="form-container">
         <div></div>
-        <form onSubmit={this.submitHandler}>
+        <form className="white-background" onSubmit={this.submitHandler}>
           <div>
             <h1>Sign Up</h1>
           </div>

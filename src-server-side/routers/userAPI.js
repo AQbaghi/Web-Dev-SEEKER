@@ -12,6 +12,7 @@ const router = express.Router();
 // create users
 router.post('/api/users/signup', async (req, res) => {
   const user = new User(req.body);
+  console.log(1);
   try {
     const token = await user.genirateAuthToken();
     await user.save();
@@ -23,6 +24,7 @@ router.post('/api/users/signup', async (req, res) => {
 
 //login
 router.post('/api/users/login', async (req, res) => {
+  console.log(2);
   try {
     const user = await User.findByCredentials(
       req.body.email,
@@ -51,6 +53,7 @@ router.delete('/api/users/deactivate', auth, async (req, res) => {
 
 //read profile
 router.get('/api/user/me', auth, (req, res) => {
+  console.log(3);
   try {
     res.send(req.user);
   } catch {

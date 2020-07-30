@@ -25,7 +25,7 @@ class StartCompany extends Component {
     return (
       <div className="form-container">
         <div></div>
-        <form onSubmit={this.submitHandler}>
+        <form className="white-background" onSubmit={this.submitHandler}>
           <div>
             <h1>Start your Company</h1>
           </div>

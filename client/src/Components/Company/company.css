@@ -37,7 +37,6 @@ ul {
 }
 .item-in-list {
   display: block;
-
   max-width: 36rem;
   padding: 0.6rem 2rem;
   margin: 0.1rem;
@@ -55,4 +54,14 @@ ul {
   background-color: rgb(122, 40, 129);
   color: white;
   list-style: none;
+}
+
+.error-message-job-post {
+  opacity: 0;
+}
+
+.error-message-job-post-on {
+  text-align: center;
+  opacity: 1;
+  color: red;
 }
