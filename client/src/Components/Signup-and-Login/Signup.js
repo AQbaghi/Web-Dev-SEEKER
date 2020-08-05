@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { signupUserAccount } from '../../store/actions/userActions.js';
-
 import './signup.css';
 
 class Signup extends Component {
@@ -45,6 +44,7 @@ class Signup extends Component {
       reader.addEventListener('load', () => {
         previewImage.setAttribute('src', reader.result);
         this.setState({
+          ...this.state,
           avatar: reader,
           formData: formData,
         });

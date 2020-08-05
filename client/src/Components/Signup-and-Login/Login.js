@@ -24,7 +24,7 @@ class Login extends Component {
     return (
       <div className="form-container">
         <div></div>
-        <form className="white-background" onSubmit={this.submitHandler}>
+        <form onSubmit={this.submitHandler}>
           <div>
             <h1>Log In</h1>
           </div>

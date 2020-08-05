@@ -20,6 +20,7 @@ router.post('/api/job/post', auth, async (req, res) => {
     });
 
     await job.save();
+    console.log(job);
     res.status(201).send(job);
   } catch (err) {
     res.status(500).send(err);
@@ -41,7 +42,7 @@ router.get('/api/job/info/:_id', async (req, res) => {
 //view all jobs --must include search and pagination
 router.get('/api/job/all-job', async (req, res) => {
   //qury link example
-  // /api/job/all-job?limit=10&skip=0&catagory=WebDev&job-title=aaaa&location=bbbb
+  // /api/job/all-job?limit=10&skip=0?catagory=WebDev
   let sortValue = -1;
   let searchCriteriaObject = {};
   //finding any related data corisponding to search criteria via $or mongodb and $regex mongodb
@@ -56,7 +57,7 @@ router.get('/api/job/all-job', async (req, res) => {
   };
 
   try {
-    const job = await Job.find(searchCriteriaObject)
+    const job = await Job.find({})
       .limit(parseInt(req.query.limit))
       .skip(parseInt(req.query.skip))
       .sort({ createdAt: sortValue });

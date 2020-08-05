@@ -134,19 +134,23 @@ const avatar = multer({
   },
 });
 router.post(
-  '/api/users/me/avatar',
-
+  '/api/users/me/avatar/:_id',
   avatar.single('avatar'),
   async (req, res) => {
+    const user = await User.findById(req.params._id);
+    console.log(user);
     const buffer = await sharp(req.file.buffer)
       .resize({ width: 250, height: 250 })
       .png()
       .toBuffer();
-    req.user.avatar = buffer;
-    await req.user.save();
+    user.avatar = buffer;
+    await user.save();
     res
       .status(201)
-      .send({ success: 'avatar picture was successfully uploaded' });
+      .send({
+        success: 'avatar picture was successfully uploaded',
+        avatar: user.avatar,
+      });
   },
   (err, req, res, next) => {
     res.status(400).send({ error: err.message });

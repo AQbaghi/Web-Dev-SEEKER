@@ -65,11 +65,11 @@ const NavBar = ({ signup, login, logout, companyAuthenticated }) => {
     );
   };
 
-  const myProfile = () => {
+  const MyJobPostsLink = () => {
     return (
       <li>
-        <Link className="nav-link" to="/profile">
-          Profile
+        <Link className="nav-link" to="/mycompany">
+          My Company
         </Link>
       </li>
     );
@@ -88,10 +88,9 @@ const NavBar = ({ signup, login, logout, companyAuthenticated }) => {
             Jobs
           </Link>
         </li>
-        {login ? myProfile() : null}
         {login && !companyAuthenticated ? StartCompanyLink() : null}
         {companyAuthenticated ? CreateJobPostLink() : null}
-
+        {companyAuthenticated ? MyJobPostsLink() : null}
         <li>
           <Link className="nav-link" to="/">
             About

@@ -1,5 +1,3 @@
-import { auth } from './authActions.js';
-
 export const startCompany = (formInfo, ownProps) => {
   return async (dispatch, getState) => {
     const token = document.cookie;
@@ -28,8 +26,9 @@ export const startCompany = (formInfo, ownProps) => {
       return;
     }
 
+    console.log('company opened!');
+
     dispatch({ type: 'START_COMPANY', companyInfo });
-    dispatch(auth(document.cookie));
 
     ownProps.history.push('/');
   };
@@ -58,9 +57,8 @@ export const cteareJobPost = (formState, ownProps) => {
       }),
     });
     const jobPost = await jobPostPropmise.json();
-
+    console.log(jobPost);
     dispatch({ type: 'POST_JOB', jobPost });
-    dispatch(auth(document.cookie));
 
     ownProps.history.push('/');
   };
