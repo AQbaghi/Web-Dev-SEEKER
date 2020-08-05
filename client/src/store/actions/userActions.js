@@ -16,6 +16,7 @@ export const signupUserAccount = (formInfo, ownProps) => {
       }),
     });
     const userAccount = await userAccountPropmise.json();
+    console.log(userAccount);
 
     //error checking
     if (userAccount.keyValue) {
@@ -35,6 +36,22 @@ export const signupUserAccount = (formInfo, ownProps) => {
 
     dispatch({ type: 'CREATE_USER_ACCOUNT', userAccount });
     dispatch(auth(document.cookie));
+
+    //if profile picture was added aswell
+    const profilePicturePropmise = await fetch('/api/users/me/avatar', {
+      headers: {
+        Authorization: document.cookie.replace('token=', 'Bearer '),
+      },
+      method: 'POST',
+      body: {
+        avatar: formInfo.formData,
+      },
+    });
+    const profilePicture = await profilePicturePropmise.json();
+    console.log(profilePicture);
+
+    dispatch({ type: 'ADD_PROFILE_PICTURE', profilePicture });
+
     ownProps.history.push('/');
   };
 };

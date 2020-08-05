@@ -31,7 +31,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props);
     if (this.props.userAccount.email) {
       authenticated = true;
     }

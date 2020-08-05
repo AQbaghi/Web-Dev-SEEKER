@@ -88,3 +88,23 @@
   text-align: center;
   padding-top: 0.3rem;
 }
+
+/* display image and upload image styles */
+.image-preview {
+  width: 300px;
+  min-height: 100px;
+  border: 2px silod #ddd;
+  margin-top: 15px;
+
+  /* default text */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #ccc;
+}
+
+.image-preview__image {
+  display: none;
+  width: 100%;
+}

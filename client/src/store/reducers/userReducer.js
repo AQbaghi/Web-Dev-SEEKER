@@ -24,6 +24,17 @@ const userReducer = (state = initState, action) => {
     };
   }
 
+  if (action.type === 'ADD_PROFILE_PICTURE') {
+    state = {
+      ...state,
+      userAccount: {
+        ...state.userAccount,
+        avatar: action.profilePicture,
+      },
+    };
+    document.cookie = `token=${state.userAccount.token}`;
+  }
+
   if (action.type === 'CATCH_ERROR') {
     if (action.userAccount) {
       action.errorMessage = action.userAccount;

@@ -10,6 +10,8 @@ class Signup extends Component {
     lastName: null,
     email: null,
     password: null,
+    profilePicture: null,
+    formData: null,
   };
 
   inputChangeHandler = (e) => {
@@ -23,11 +25,54 @@ class Signup extends Component {
     this.props.dispatchSignupInfo(this.state);
   };
 
+  //image handler
+  selectImageHandler = (e) => {
+    //selecting the dom elements to preview image
+    const prefviewDefaultText = document.querySelector(
+      '.image-preview__default-text'
+    );
+    const previewImage = document.querySelector('.image-preview__image');
+
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      const formData = new FormData();
+      //display image
+      prefviewDefaultText.style.display = 'none';
+      previewImage.style.display = 'block';
+
+      //inload event and set state to image data url
+      reader.addEventListener('load', () => {
+        previewImage.setAttribute('src', reader.result);
+        this.setState({
+          avatar: reader,
+          formData: formData,
+        });
+      });
+
+      formData.append('avatar', file);
+      console.log(formData);
+
+      //reading the file as data url
+      reader.readAsDataURL(file);
+    } else {
+      //display default text in dom
+      prefviewDefaultText.style.display = null;
+      previewImage.style.display = null;
+    }
+  };
+
   render() {
     return (
       <div className="form-container">
         <div></div>
-        <form className="white-background" onSubmit={this.submitHandler}>
+        <form
+          className="white-background"
+          onSubmit={this.submitHandler}
+          method="post"
+          encType="multipart/form-data"
+          action="/upload"
+        >
           <div>
             <h1>Sign Up</h1>
           </div>
@@ -85,6 +130,20 @@ class Signup extends Component {
             <label htmlFor="password" className="label-name">
               <span className="content-name">Password</span>
             </label>
+          </div>
+          <div className="profile-picture-input">
+            <input
+              type="file"
+              name="inpFile"
+              id="inpFile"
+              onChange={this.selectImageHandler}
+            />
+            <div className="image-preview" id="imagePreview">
+              <img src="" alt="" className="image-preview__image" />
+              <span className="image-preview__default-text">
+                Profile Picture
+              </span>
+            </div>
           </div>
           <button className="signup-login-button">Signup</button>
         </form>

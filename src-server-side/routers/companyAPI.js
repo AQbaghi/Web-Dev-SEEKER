@@ -10,7 +10,6 @@ const router = express.Router();
 
 // create Company
 router.post('/api/company/create', auth, async (req, res) => {
-  console.log(7);
   const company = new Company({
     ...req.body,
     owner: req.user._id,
@@ -33,7 +32,6 @@ router.post('/api/company/create', auth, async (req, res) => {
 
 //read profile
 router.get('/api/company/me', auth, async (req, res) => {
-  console.log(8);
   try {
     const company = await Company.findOne({ owner: req.user._id });
   } catch (err) {

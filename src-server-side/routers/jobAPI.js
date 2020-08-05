@@ -8,7 +8,6 @@ const router = express.Router();
 
 // create a job posting
 router.post('/api/job/post', auth, async (req, res) => {
-  console.log(6);
   try {
     const { companyName, location, _id } = await Company.findOne({
       owner: req.user._id,
@@ -29,7 +28,6 @@ router.post('/api/job/post', auth, async (req, res) => {
 
 //view job
 router.get('/api/job/info/:_id', async (req, res) => {
-  console.log(5);
   try {
     const _id = req.params._id;
     const job = await Job.findById(_id);
@@ -42,12 +40,10 @@ router.get('/api/job/info/:_id', async (req, res) => {
 
 //view all jobs --must include search and pagination
 router.get('/api/job/all-job', async (req, res) => {
-  console.log(4);
   //qury link example
   // /api/job/all-job?limit=10&skip=0&catagory=WebDev&job-title=aaaa&location=bbbb
   let sortValue = -1;
   let searchCriteriaObject = {};
-  console.log(req.query);
   //finding any related data corisponding to search criteria via $or mongodb and $regex mongodb
   searchCriteriaObject = {
     $or: [

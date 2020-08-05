@@ -27,7 +27,6 @@ export const startCompany = (formInfo, ownProps) => {
       });
       return;
     }
-    console.log('company opened!');
 
     dispatch({ type: 'START_COMPANY', companyInfo });
     dispatch(auth(document.cookie));
