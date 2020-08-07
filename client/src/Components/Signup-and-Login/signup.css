@@ -5,8 +5,11 @@
 }
 
 form {
-  background-color: white;
   padding: 3rem;
+}
+
+.white-background {
+  background-color: white;
 }
 
 .form {

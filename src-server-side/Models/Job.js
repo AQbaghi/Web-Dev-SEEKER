@@ -44,6 +44,12 @@ const JobSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    keyWords: [
+      {
+        required: true,
+        type: String,
+      },
+    ],
     companyName: {
       type: String,
       required: true,

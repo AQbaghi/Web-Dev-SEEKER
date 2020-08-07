@@ -9,6 +9,15 @@ const userReducer = (state = initState, action) => {
     document.cookie = `token=${state.userAccount.token}`;
   }
 
+  if (action.type === 'UPLOAD_AVATAR_AND_CREATE_USER') {
+    state = {
+      ...state,
+      userAccount: action.user.userAccount,
+      userAvatar: action.user.userAvatar,
+    };
+    document.cookie = `token=${state.userAccount.token}`;
+  }
+
   if (action.type === 'LOGIN_USER_ACCOUNT') {
     state = {
       ...state,

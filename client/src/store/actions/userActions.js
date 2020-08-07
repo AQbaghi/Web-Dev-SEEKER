@@ -1,5 +1,9 @@
+import { auth } from './authActions.js';
+
 export const signupUserAccount = (formInfo, ownProps) => {
   return async (dispatch, getState) => {
+    ownProps.history.push('/');
+
     const userAccountPropmise = await fetch('/api/users/signup', {
       headers: {
         Accept: 'application/json',
@@ -34,20 +38,25 @@ export const signupUserAccount = (formInfo, ownProps) => {
 
     dispatch({ type: 'CREATE_USER_ACCOUNT', userAccount });
 
-    //profile picture upload
-    console.log('looool');
-    const avatarUploadPromise = await fetch(
-      `/api/users/me/avatar/${userAccount.user._id}`,
-      {
-        method: 'POST',
-        body: formInfo.formData,
-      }
-    );
+    if (formInfo.formData) {
+      //profile picture upload
+      const userAvatarPromise = await fetch(
+        `/api/users/me/avatar/${userAccount.user._id}`,
+        {
+          method: 'POST',
+          body: formInfo.formData,
+        }
+      );
 
-    const avatarUpload = await avatarUploadPromise.json();
-    console.log(avatarUpload);
+      const userAvatar = await userAvatarPromise.json();
 
-    ownProps.history.push('/');
+      dispatch({
+        type: 'UPLOAD_AVATAR_AND_CREATE_USER',
+        user: { userAccount, userAvatar },
+      });
+    }
+
+    dispatch(auth(userAccount.token));
   };
 };
 

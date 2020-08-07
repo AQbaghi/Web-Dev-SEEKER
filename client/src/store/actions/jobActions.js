@@ -1,8 +1,11 @@
 //add pagination details here
 
-export const getJobsFromDB = () => {
+export const getJobsFromDB = (ownProps) => {
   return async (dispatch, getState) => {
-    const jobsPromise = await fetch('/api/job/all-job?limit=10&skip=0?');
+    console.log(ownProps);
+    const jobsPromise = await fetch(
+      `/api/job/all-job${ownProps.location.search}`
+    );
     const jobs = await jobsPromise.json();
 
     dispatch({ type: 'GET_JOBS', jobs: jobs });

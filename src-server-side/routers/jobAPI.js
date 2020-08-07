@@ -45,6 +45,7 @@ router.get('/api/job/all-job', async (req, res) => {
   // /api/job/all-job?limit=10&skip=0?catagory=WebDev
   let sortValue = -1;
   let searchCriteriaObject = {};
+  console.log(req.query);
   //finding any related data corisponding to search criteria via $or mongodb and $regex mongodb
   searchCriteriaObject = {
     $or: [
@@ -55,9 +56,8 @@ router.get('/api/job/all-job', async (req, res) => {
     ],
     location: { $regex: req.query.location, $options: 'i' },
   };
-
   try {
-    const job = await Job.find({})
+    const job = await Job.find(searchCriteriaObject)
       .limit(parseInt(req.query.limit))
       .skip(parseInt(req.query.skip))
       .sort({ createdAt: sortValue });
