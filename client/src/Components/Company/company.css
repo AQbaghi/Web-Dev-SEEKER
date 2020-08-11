@@ -37,7 +37,6 @@ ul {
 }
 .item-in-list {
   display: block;
-
   max-width: 36rem;
   padding: 0.6rem 2rem;
   margin: 0.1rem;
@@ -50,7 +49,6 @@ ul {
 }
 
 .key-word {
-  padding: 0.4rem 1rem;
   margin: 0.1rem;
   background-color: rgb(122, 40, 129);
   color: white;

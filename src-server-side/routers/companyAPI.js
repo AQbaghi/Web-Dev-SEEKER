@@ -2,6 +2,7 @@ const express = require('express');
 const multer = require('multer');
 const sharp = require('sharp');
 const Company = require('../Models/Company.js');
+const User = require('../Models/User.js');
 const auth = require('../middleware/auth.js');
 const router = express.Router();
 
@@ -32,7 +33,7 @@ router.post('/api/company/create', auth, async (req, res) => {
 //read profile
 router.get('/api/company/me', auth, async (req, res) => {
   try {
-    const company = await Company.find({ owner: req.user._id });
+    const company = await Company.findOne({ owner: req.user._id });
     res.send(company);
   } catch (err) {
     res.status(400).send(err);
@@ -83,21 +84,21 @@ const avatar = multer({
   },
 });
 router.post(
-  '/api/company/me/avatar',
-  auth,
+  '/api/company/me/avatar/:_id',
   avatar.single('avatar'),
   async (req, res) => {
-    const companyOwner = req.user._id;
-    const company = await Company.findOne({ owner: companyOwner });
+    const company = await Company.findOne({ owner: req.params._id });
+    console.log(company);
     const buffer = await sharp(req.file.buffer)
       .resize({ width: 250, height: 250 })
       .png()
       .toBuffer();
     company.avatar = buffer;
     await company.save();
-    res
-      .status(201)
-      .send({ success: 'avatar picture was successfully uploaded' });
+    res.status(201).send({
+      success: 'avatar picture was successfully uploaded',
+      avatar: company.avatar,
+    });
   },
   (err, req, res, next) => {
     res.status(400).send({ error: err.message });

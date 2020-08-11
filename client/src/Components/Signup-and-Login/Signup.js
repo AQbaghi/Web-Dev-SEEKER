@@ -162,6 +162,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     dispatchSignupInfo: (formState) => {
+      console.log(formState);
       dispatch(signupUserAccount(formState, ownProps));
     },
   };

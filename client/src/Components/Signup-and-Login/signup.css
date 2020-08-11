@@ -1,11 +1,7 @@
 .form-container {
   display: grid;
-  grid-template-columns: 5rem auto 5rem;
+  grid-template-columns: 0rem auto 0rem;
   grid-auto-rows: minmax(100vh, auto);
-}
-
-form {
-  padding: 3rem;
 }
 
 .white-background {
@@ -13,11 +9,11 @@ form {
 }
 
 .form {
-  width: 100%;
+  width: 65%;
   position: relative;
   height: 50px;
   overflow: hidden;
-  margin: 1.4rem 0 1.4rem 0;
+  margin: 1.4rem 0 1.4rem 4rem;
 }
 
 .form input {
@@ -72,7 +68,7 @@ form {
 
 .signup-login-button {
   border: none;
-  width: 8rem;
+  width: 6rem;
   height: 2.5rem;
   font-size: 20px;
   color: white;
@@ -110,4 +106,24 @@ form {
 .image-preview__image {
   display: none;
   width: 100%;
+}
+
+@media only screen and (min-width: 560px) {
+  .form-container {
+    grid-template-columns: 8rem auto 8rem;
+  }
+  .form {
+    width: 100%;
+    margin: 1.4rem 0 1.4rem 0;
+  }
+}
+
+@media only screen and (min-width: 720px) {
+  .form-container {
+    grid-template-columns: 14rem auto 14rem;
+  }
+  .form {
+    width: 100%;
+    margin: 1.4rem 0 1.4rem 0;
+  }
 }

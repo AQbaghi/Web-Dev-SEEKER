@@ -7,6 +7,7 @@ const authReducer = (state = initState, action) => {
       userAccount: action.authenticatedUser,
     };
   }
+
   console.log(action.authenticatedUser);
   return state;
 };

@@ -49,6 +49,7 @@ export const signupUserAccount = (formInfo, ownProps) => {
       );
 
       const userAvatar = await userAvatarPromise.json();
+      console.log(userAvatar);
 
       dispatch({
         type: 'UPLOAD_AVATAR_AND_CREATE_USER',

@@ -2,6 +2,14 @@ import { initState } from './initState.js';
 
 const companyReducer = (state = initState, action) => {
   if (action.type === 'START_COMPANY') {
+    console.log(action.authenticatedUser);
+    state = {
+      ...state,
+      companyInfo: action.companyInfo,
+      userAccount: action.authenticatedUser,
+    };
+  }
+  if (action.type === 'START_COMPANY_WITH_AVATAR') {
     state = {
       ...state,
       companyInfo: action.companyInfo,

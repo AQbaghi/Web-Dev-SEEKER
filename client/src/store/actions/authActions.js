@@ -10,6 +10,23 @@ export const auth = (token) => {
     });
     const authenticatedUser = await authenticatedPropmise.json();
 
-    dispatch({ type: 'AUTHENTICATE_USER', authenticatedUser });
+    try {
+      const usersCompanyPropmise = await fetch('/api/company/me', {
+        headers: {
+          Accept: 'application/json',
+          'Content-type': 'application/json',
+          Authorization: token.replace('token=', 'Bearer '),
+        },
+        method: 'GET',
+      });
+      const companyInfo = await usersCompanyPropmise.json();
+
+      dispatch({
+        type: 'AUTHENTICATE_USER',
+        authenticatedUser: { ...authenticatedUser, companyInfo },
+      });
+    } catch (err) {
+      dispatch({ type: 'AUTHENTICATE_USER', authenticatedUser });
+    }
   };
 };

@@ -82,7 +82,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     authenticateUser: () => {
       dispatch(auth(document.cookie));
-      console.log('dsa');
     },
   };
 };
