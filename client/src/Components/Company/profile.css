@@ -35,8 +35,8 @@
 #companyImage {
   width: 98%;
   margin-left: 1%;
-  max-width: 32rem;
-  min-width: 10rem;
+  max-width: 400px;
+  max-height: 300px;
   border-radius: 10px;
 }
 
@@ -129,10 +129,30 @@
   transition: 0.4s;
 }
 
-@media only screen and (min-width: 1080px) {
-  #companyImage {
-    float: right;
-    margin: 3rem 6rem 2rem 1rem;
+@media only screen and (min-width: 900px) {
+  .jobPost-details {
+    display: grid;
+    grid-template-columns: 450px auto;
+    grid-auto-rows: minmax(90vh, auto);
+
+    text-decoration: none;
+    color: #333;
+    transition: 0.4s;
+
+    margin: 0rem 0rem 1rem 0;
+    padding: 0.1rem 1rem 1rem 2.5rem;
+    border-radius: 5px;
+  }
+  #company-info img {
+    padding: 0;
+    margin: 0;
+    margin-top: 2rem;
+  }
+  #company-info h1 {
+    text-align: ce;
+  }
+  #jobPost-info {
+    padding-left: 1rem;
   }
 }
 

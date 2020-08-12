@@ -9,14 +9,15 @@ const router = express.Router();
 // create a job posting
 router.post('/api/job/post', auth, async (req, res) => {
   try {
-    const { companyName, location, _id } = await Company.findOne({
+    const company = await Company.findOne({
       owner: req.user._id,
     });
     const job = new Job({
       ...req.body,
-      location,
-      JobOwner: _id,
-      companyName,
+      location: company.location,
+      JobOwner: company._id,
+      companyName: company.companyName,
+      companyAvatar: company.avatar,
     });
 
     await job.save();

@@ -54,6 +54,9 @@ const JobSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    companyAvatar: {
+      type: Buffer,
+    },
   },
   {
     timestamps: true,
