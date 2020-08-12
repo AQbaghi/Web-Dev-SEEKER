@@ -29,8 +29,8 @@ export const startCompany = (formInfo, ownProps) => {
       return;
     }
 
-    try {
-      console.log(companyInfo.owner);
+    //if profile picture added dispatch to companyAvatar API
+    if (formInfo.avatar) {
       const companyAvatarPromise = await fetch(
         `/api/company/me/avatar/${companyInfo.owner}`,
         {
@@ -38,19 +38,17 @@ export const startCompany = (formInfo, ownProps) => {
           body: formInfo.formData,
         }
       );
-      console.log(companyAvatarPromise);
       const companyAvatar = await companyAvatarPromise.json();
-      console.log(companyAvatar);
 
       dispatch({
         type: 'START_COMPANY_WITH_AVATAR',
         companyInfo: { ...companyInfo, companyAvatar },
       });
-    } catch (err) {
-      dispatch({ type: 'START_COMPANY', companyInfo });
-      console.log(companyInfo);
+      dispatch(auth(document.cookie));
+      return;
     }
-
+    //if profile picture added dispatch to just the company API
+    dispatch({ type: 'START_COMPANY', companyInfo });
     dispatch(auth(document.cookie));
   };
 };
@@ -78,7 +76,7 @@ export const cteareJobPost = (formState, ownProps) => {
       }),
     });
     const jobPost = await jobPostPropmise.json();
-    console.log(jobPost);
+
     dispatch({ type: 'POST_JOB', jobPost });
 
     ownProps.history.push('/');

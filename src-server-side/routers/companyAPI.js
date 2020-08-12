@@ -74,7 +74,7 @@ router.patch('/api/company/update', auth, async (req, res) => {
 //company avatar profile picture upload
 const avatar = multer({
   limits: {
-    fileSize: 1000000,
+    fileSize: 10000000,
   },
   fileFilter(req, file, cb) {
     if (!file.originalname.match(/\.(jpg|png|jpeg)$/)) {
@@ -90,7 +90,7 @@ router.post(
     const company = await Company.findOne({ owner: req.params._id });
     console.log(company);
     const buffer = await sharp(req.file.buffer)
-      .resize({ width: 250, height: 250 })
+      .resize({ width: 400, height: 320 })
       .png()
       .toBuffer();
     company.avatar = buffer;

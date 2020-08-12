@@ -19,7 +19,7 @@
   clip-path: polygon(0 0, 100% 0, 100% 8rem, 0 100%);
 }
 
-.profile img {
+.profile .profilePicture {
   width: 50%;
   max-width: 16rem;
   min-width: 10rem;
@@ -30,6 +30,14 @@
   position: relative;
   float: right;
   margin: 1rem 3rem;
+}
+
+#companyImage {
+  width: 98%;
+  margin-left: 1%;
+  max-width: 32rem;
+  min-width: 10rem;
+  border-radius: 10px;
 }
 
 .profile-content {
@@ -65,7 +73,7 @@
   font-size: 1.4rem;
   color: white;
   background: rgb(102, 0, 139);
-  padding: 0.4rem;
+  padding: 0.4rem 0;
   transition: 0.4s;
 }
 .applied-jobs-button:hover {
@@ -100,4 +108,36 @@
   display: none;
   height: 0;
   transition: 0.4s;
+}
+
+.profileToStartCompany {
+  text-align: center;
+}
+
+.profileToStartCompanyLink {
+  text-align: center;
+  font-size: 2rem;
+  text-decoration: none;
+  background-color: rgb(102, 0, 139);
+  color: white;
+  border-radius: 4px;
+  padding: 0.2rem 0.6rem;
+  transition: 0.4s;
+}
+.profileToStartCompanyLink:hover {
+  background-color: rgb(169, 2, 230);
+  transition: 0.4s;
+}
+
+@media only screen and (min-width: 1080px) {
+  #companyImage {
+    float: right;
+    margin: 3rem 6rem 2rem 1rem;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  #companyImage {
+    margin: 1rem 10%;
+  }
 }

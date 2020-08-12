@@ -10,6 +10,7 @@ class Jobs extends Component {
     this.props.getJobPosts();
   }
   render() {
+    console.log(this.props.jobPosts);
     return (
       <div className="jobs no-outline">
         <SearchBar />

@@ -124,7 +124,7 @@ router.get('/api/users/show-all', (req, res) => {
 //avatar profile picture upload
 const avatar = multer({
   limits: {
-    fileSize: 1000000,
+    fileSize: 10000000,
   },
   fileFilter(req, file, cb) {
     if (!file.originalname.match(/\.(jpg|png|jpeg)$/)) {
@@ -145,12 +145,10 @@ router.post(
       .toBuffer();
     user.avatar = buffer;
     await user.save();
-    res
-      .status(201)
-      .send({
-        success: 'avatar picture was successfully uploaded',
-        avatar: user.avatar,
-      });
+    res.status(201).send({
+      success: 'avatar picture was successfully uploaded',
+      avatar: user.avatar,
+    });
   },
   (err, req, res, next) => {
     res.status(400).send({ error: err.message });
