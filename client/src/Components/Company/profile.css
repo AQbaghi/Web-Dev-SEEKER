@@ -114,6 +114,10 @@
   text-align: center;
 }
 
+#company-description {
+  font-size: 1.4rem;
+}
+
 .profileToStartCompanyLink {
   text-align: center;
   font-size: 2rem;

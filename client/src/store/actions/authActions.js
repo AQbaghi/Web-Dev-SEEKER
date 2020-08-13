@@ -30,3 +30,16 @@ export const auth = (token) => {
     }
   };
 };
+
+export const getMyCompanyInfo = async (token) => {
+  const usersCompanyPropmise = await fetch('/api/company/me', {
+    headers: {
+      Accept: 'application/json',
+      'Content-type': 'application/json',
+      Authorization: token.replace('token=', 'Bearer '),
+    },
+    method: 'GET',
+  });
+  const companyInfo = await usersCompanyPropmise.json();
+  return companyInfo;
+};

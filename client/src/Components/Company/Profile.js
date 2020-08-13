@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { getMyCompanyJobsFromDB } from '../../store/actions/jobActions.js';
 import { _arrayBufferToBase64 } from '../../SettingsAndImageProcessors/_arrayBufferToBase64';
 import './profile.css';
 import defaultImage from '../../images/default-user.jpg';
 import defaultCompanyImage from '../../images/PRIVATE-LIMITE.jpg';
-
+let loaded = false;
 class Profile extends Component {
   appliedJobsClickHandler = (e) => {
     e.target.parentElement.childNodes[1].classList.toggle(
@@ -21,6 +22,14 @@ class Profile extends Component {
 
     //check if the company data is dispatched to the state
     if (this.props.account.auth.userAccount.companyInfo) {
+      //checking if company is in props then fetch the company jobs once
+      if (!loaded) {
+        //dispatch to get company jobs
+        this.props.getMyCompanyJobPosts(
+          this.props.account.auth.userAccount.companyInfo._id
+        );
+        loaded = true;
+      }
       if (this.props.account.auth.userAccount.companyInfo.avatar) {
         let companyPictureBuffer = this.props.account.auth.userAccount
           .companyInfo.avatar.data;
@@ -94,10 +103,11 @@ class Profile extends Component {
                 <p className="full-name">
                   {this.props.account.auth.userAccount.companyInfo.companyName}
                 </p>
-                <p>Description:</p>
-                <p className="companyDescription">
+                <p id="company-description">
+                  Description:{' '}
                   {this.props.account.auth.userAccount.companyInfo.description}
                 </p>
+
                 <h3>
                   {this.props.account.auth.userAccount.companyInfo.location}
                 </h3>
@@ -110,21 +120,27 @@ class Profile extends Component {
                     View Jops Posted
                   </div>
                   <ul className="applied-jobs-list applied-jobs-list-closed">
-                    <li>
-                      <a href="#">Job 1</a>
-                    </li>
-                    <li>
-                      <a href="#">Job 2</a>
-                    </li>
-                    <li>
-                      <a href="#">Job 3</a>
-                    </li>
-                    <li>
-                      <a href="#">Job 4</a>
-                    </li>
-                    <li>
-                      <a href="#">Job 5</a>
-                    </li>
+                    {this.props.account.job.myCompanyJobs
+                      ? this.props.account.job.myCompanyJobs.map(
+                          (companyJob) => {
+                            console.log(companyJob);
+                            let linkToJobPost = `/jobs/${companyJob._id}`;
+                            return (
+                              <li key={companyJob._id}>
+                                <Link to={linkToJobPost}>
+                                  {companyJob.jobTitle}
+                                  <p>{companyJob.createdAt}</p>
+                                </Link>
+                              </li>
+                            );
+                          }
+                        )
+                      : null}
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <br></br>
                   </ul>
                 </div>
               </div>
@@ -148,13 +164,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-//   const mapDispatchToProps = (dispatch, ownProps) => {
-//     return {
-//       authenticateUser: () => {
-//         dispatch(auth(document.cookie));
-//         console.log('dsa');
-//       },
-//     };
-//   };
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    getMyCompanyJobPosts: (owner) => {
+      dispatch(getMyCompanyJobsFromDB(owner));
+    },
+  };
+};
 
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

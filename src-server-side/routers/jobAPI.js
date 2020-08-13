@@ -68,4 +68,15 @@ router.get('/api/job/all-job', async (req, res) => {
   }
 });
 
+//view all my company job posts
+router.post('/api/job/my-jobs', auth, async (req, res) => {
+  console.log(req.body._id);
+  try {
+    const job = await Job.find({ JobOwner: req.body._id });
+    res.send(job);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
 module.exports = router;

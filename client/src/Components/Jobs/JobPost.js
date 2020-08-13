@@ -12,8 +12,20 @@ class JobPost extends Component {
     this.props.getJobPostDetails();
   }
   render() {
+    let showApplyButton = true;
     let num = 1;
-    console.log(this.props.jobPostDetails.job.companyAvatar);
+
+    //chexk if apply to job button should show up, or delete job post button should
+    if (this.props.jobPostDetails.verifiedCompanyId) {
+      if (
+        this.props.jobPostDetails.companyInfo._id ===
+        this.props.jobPostDetails.verifiedCompanyId._id
+      ) {
+        console.log('ssssss');
+        showApplyButton = false;
+      }
+    }
+
     let companyPictureBuffer = null;
     let companyPicture = null;
     if (this.props.jobPostDetails.job.companyAvatar) {
@@ -83,7 +95,11 @@ class JobPost extends Component {
             </div>
           ) : null}
           <p>Postted at: {this.props.jobPostDetails.job.createdAt}</p>
-          <div className="apply-to-job">Apply Now</div>
+          {showApplyButton ? (
+            <div className="apply-to-job">Apply Now</div>
+          ) : (
+            <div className="delete-job-post">Delete Job Post</div>
+          )}
         </div>
       </div>
     );

@@ -193,3 +193,19 @@ body {
   transition: 0.4s;
   cursor: pointer;
 }
+.delete-job-post {
+  width: 10rem;
+  padding-top: 0.6rem;
+  height: 2.5rem;
+  font-size: 1.2rem;
+  border: none;
+  color: white;
+  background: rgba(70, 7, 116, 0.78);
+  text-align: center;
+  transition: 0.4s;
+}
+.delete-job-post:hover {
+  background: rgb(101, 17, 161);
+  transition: 0.4s;
+  cursor: pointer;
+}
