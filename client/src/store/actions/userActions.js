@@ -2,8 +2,37 @@ import { auth } from './authActions.js';
 
 export const signupUserAccount = (formInfo, ownProps) => {
   return async (dispatch, getState) => {
-    ownProps.history.push('/');
+    //check if verification code === the verification code in the database
+    console.log('lololoooooololll');
+    console.log(formInfo.verificationCode);
+    const verificationCodeInDatabasePromise = await fetch(
+      '/api/users/verifyemail/check',
+      {
+        headers: {
+          Accept: 'application/json',
+          'Content-type': 'application/json',
+        },
+        method: 'DELETE',
+        body: JSON.stringify({
+          email: formInfo.email,
+          verificationCode: formInfo.verificationCode,
+        }),
+      }
+    );
+    const verificationCodeInDatabase = await verificationCodeInDatabasePromise.json();
+    console.log('hoping...');
+    console.log(verificationCodeInDatabase);
+    console.log(formInfo.email);
+    console.log(formInfo.verificationCode);
+    if (
+      verificationCodeInDatabase.verificationCode !== formInfo.verificationCode
+    ) {
+      console.log('dont you dare');
+      return;
+    }
 
+    console.log('wooohoooooooooooooooooooo');
+    ownProps.history.push('/');
     const userAccountPropmise = await fetch('/api/users/signup', {
       headers: {
         Accept: 'application/json',

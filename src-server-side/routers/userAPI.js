@@ -4,10 +4,87 @@ const jwt = require('jsonwebtoken');
 const multer = require('multer');
 const sharp = require('sharp');
 const User = require('../Models/User.js');
+const TempUser = require('../Models/TempUser.js');
 const auth = require('../middleware/auth.js');
+const {
+  sendVerificationCodeToUser,
+  genirateCode,
+} = require('../emails/accountEmails.js');
 const router = express.Router();
 
 //all about the users
+
+// veryfy email route
+router.post('/api/users/verifyemail', async (req, res) => {
+  const code = genirateCode();
+  tempUser = {};
+  try {
+    //check if user already exixst before creation
+    const user = await User.findOne({ email: req.body.email });
+    console.log('email   ' + user);
+    if (user) {
+      console.log({ error: 'user with email adress already exists' });
+      throw new Error({ error: 'user with email adress already exists' });
+    }
+
+    //check if temperary user already exists to set only one verification code and make only one valid
+    tempUser = await TempUser.findOne({ email: req.body.email });
+    console.log('email   ' + user);
+    if (tempUser) {
+      tempUser.verificationCode = code;
+      //semd the email with code
+      await sendVerificationCodeToUser(
+        req.body.email,
+        req.body.firstName,
+        req.body.lastName,
+        code
+      );
+    } else {
+      //if no verification code was sent, create a temparery user with the code
+      tempUser = new TempUser({
+        email: req.body.email,
+        verificationCode: code,
+        verified: false,
+      });
+      //semd the email with code
+      await sendVerificationCodeToUser(
+        req.body.email,
+        req.body.firstName,
+        req.body.lastName,
+        code
+      );
+    }
+
+    await tempUser.save();
+    res.status(201).send({
+      verifyEmail:
+        'please verify the email you provided by the passcode sent to your email',
+      success: true,
+    });
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
+//read temp user
+
+router.delete('/api/users/verifyemail/check', async (req, res) => {
+  try {
+    console.log(req.body);
+    const tempUser = await TempUser.findOne({
+      email: req.body.email,
+      verificationCode: req.body.verificationCode,
+    });
+    console.log(tempUser);
+    const prevTempUser = tempUser;
+    console.log(prevTempUser);
+    await tempUser.delete();
+    console.log(tempUser);
+    res.status(201).send(prevTempUser);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
 
 // create users
 router.post('/api/users/signup', async (req, res) => {

@@ -1,7 +1,24 @@
 .form-container {
-  display: grid;
-  grid-template-columns: 0rem auto 0rem;
-  grid-auto-rows: minmax(100vh, auto);
+  display: block;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.form-inner-comtainer {
+  display: block;
+  margin: 0 auto;
+  width: 90%;
+  max-width: 40rem;
+}
+
+.form-title {
+  margin: 0;
+  text-align: center;
+  font-size: 3rem;
 }
 
 .white-background {
@@ -9,11 +26,11 @@
 }
 
 .form {
-  width: 65%;
+  width: 100%;
   position: relative;
   height: 50px;
   overflow: hidden;
-  margin: 1.4rem 0 1.4rem 4rem;
+  margin: 1.4rem 0 1.4rem 0rem;
 }
 
 .form input {
@@ -108,22 +125,52 @@
   width: 100%;
 }
 
-@media only screen and (min-width: 560px) {
-  .form-container {
-    grid-template-columns: 8rem auto 8rem;
+/* verification popup */
+#verification-popUp {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.479);
+}
+
+#popUp {
+  position: relative;
+  margin: 0 auto;
+  padding: 2rem 4rem;
+  top: 30vh;
+  width: 80%;
+  max-width: 25rem;
+  height: 16rem;
+  background-color: white;
+  border: violet solid 1px;
+  font-size: 1.6;
+}
+
+@media only screen and (max-width: 750px) {
+  #popUp {
+    padding: 1rem 2rem;
+    width: 80%;
+    max-width: 20rem;
+    height: 16rem;
   }
-  .form {
-    width: 100%;
-    margin: 1.4rem 0 1.4rem 0;
+  .form-inner-comtainer {
+    margin: 0 auto;
+    width: 80%;
+    max-width: 24rem;
   }
 }
 
-@media only screen and (min-width: 720px) {
-  .form-container {
-    grid-template-columns: 14rem auto 14rem;
+@media only screen and (max-width: 500px) {
+  #popUp {
+    padding: 1rem 2rem;
+    width: 80%;
+    max-width: 15rem;
+    height: 16rem;
   }
-  .form {
-    width: 100%;
-    margin: 1.4rem 0 1.4rem 0;
+  .form-inner-comtainer {
+    margin: 0 auto;
+    width: 60%;
+    max-width: 18rem;
   }
 }
