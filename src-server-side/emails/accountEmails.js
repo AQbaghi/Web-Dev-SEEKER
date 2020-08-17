@@ -1,7 +1,6 @@
 const sgMail = require('@sendgrid/mail');
 
-const sendgridAPIKey =
-  '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';
+const sendgridAPIKey = process.env.SENDGRID_API_KEY;
 
 const genirateCode = () => {
   const verificationCode = `${Math.floor(Math.random() * 10)}${Math.floor(
