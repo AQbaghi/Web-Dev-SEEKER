@@ -1,3 +1,16 @@
+/*  styling the input feild for uploads */
+
+input[type='file'] {
+  display: none;
+}
+
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
 .form-container {
   display: block;
   background-color: white;
@@ -37,7 +50,8 @@
   width: 100%;
   height: 100%;
   color: #595f6e;
-  padding-top: 20px;
+  padding-top: 14px;
+  font-size: 1.1rem;
   border: none;
   outline: none;
 }
@@ -49,7 +63,7 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #333;
 }
 
 .form label::after {
@@ -59,7 +73,7 @@
   bottom: 1;
   height: 100%;
   width: 100%;
-  border-bottom: 3px solid #5fa8d3;
+  border-bottom: 2px solid #5fa8d3;
   transform: translateX(-100%);
   transition: all 0.3s ease;
 }

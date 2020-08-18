@@ -23,43 +23,43 @@ class Login extends Component {
   render() {
     return (
       <div className="form-container">
-        <div></div>
-        <form onSubmit={this.submitHandler}>
-          <div>
-            <h1>Log In</h1>
-          </div>
-          <div className="error-box">
-            <p>{this.props.error.error}</p>
-          </div>
-          <div className="form">
-            <input
-              type="email"
-              name="email"
-              id="email"
-              required
-              autoComplete="off"
-              onChange={this.inputChangeHandler}
-            />
-            <label htmlFor="email" className="label-name">
-              <span className="content-name">Email</span>
-            </label>
-          </div>
-          <div className="form">
-            <input
-              type="password"
-              name="password"
-              id="password"
-              required
-              autoComplete="off"
-              onChange={this.inputChangeHandler}
-            />
-            <label htmlFor="password" className="label-name">
-              <span className="content-name">Password</span>
-            </label>
-          </div>
-          <button className="signup-login-button">Login</button>
-        </form>
-        <div></div>
+        <div className="form-inner-comtainer">
+          <form onSubmit={this.submitHandler}>
+            <div>
+              <h1 className="form-title">Log In</h1>
+            </div>
+            <div className="error-box">
+              <p>{this.props.error.error}</p>
+            </div>
+            <div className="form">
+              <input
+                type="email"
+                name="email"
+                id="email"
+                required
+                autoComplete="off"
+                onChange={this.inputChangeHandler}
+              />
+              <label htmlFor="email" className="label-name">
+                <span className="content-name">Email</span>
+              </label>
+            </div>
+            <div className="form">
+              <input
+                type="password"
+                name="password"
+                id="password"
+                required
+                autoComplete="off"
+                onChange={this.inputChangeHandler}
+              />
+              <label htmlFor="password" className="label-name">
+                <span className="content-name">Password</span>
+              </label>
+            </div>
+            <button className="signup-login-button">Login</button>
+          </form>
+        </div>
       </div>
     );
   }

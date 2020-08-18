@@ -63,70 +63,78 @@ class StartCompany extends Component {
   render() {
     return (
       <div className="form-container">
-        <div></div>
-        <form className="white-background" onSubmit={this.submitHandler}>
-          <div>
-            <h1>Start your Company</h1>
-          </div>
-          <div className="error-box">
-            <p>{this.props.error.error}</p>
-          </div>
-          <div className="form">
-            <input
-              type="text"
-              name="companyName"
-              id="companyName"
-              required
-              autoComplete="off"
-              onChange={this.inputChangeHandler}
-            />
-            <label htmlFor="companyName" className="label-name">
-              <span className="content-name">Company Name</span>
-            </label>
-          </div>
-          <div className="form">
-            <input
-              type="text"
-              name="companyDescription"
-              id="companyDescription"
-              required
-              autoComplete="off"
-              onChange={this.inputChangeHandler}
-            />
-            <label htmlFor="companyDescription" className="label-name">
-              <span className="content-name">Company Description</span>
-            </label>
-          </div>
-          <div className="form">
-            <input
-              type="text"
-              name="location"
-              id="location"
-              required
-              autoComplete="off"
-              onChange={this.inputChangeHandler}
-            />
-            <label htmlFor="location" className="label-name">
-              <span className="content-name">Company Location</span>
-            </label>
-          </div>
-          <div className="profile-picture-input">
-            <input
-              type="file"
-              name="inpFile"
-              id="inpFile"
-              onChange={this.selectImageHandler}
-            />
-            <div className="image-preview" id="imagePreview">
-              <img src="" alt="" className="image-preview__image" />
-              <span className="image-preview__default-text">
-                Profile Picture
-              </span>
+        <div className="form-inner-comtainer">
+          <form className="white-background" onSubmit={this.submitHandler}>
+            <div>
+              <h1 className="form-title">Start your Company</h1>
             </div>
-          </div>
-          <button className="signup-login-button">Submit</button>
-        </form>
-        <div></div>
+            <div className="error-box">
+              <p>{this.props.error.error}</p>
+            </div>
+            <div className="form">
+              <input
+                type="text"
+                name="companyName"
+                id="companyName"
+                required
+                autoComplete="off"
+                onChange={this.inputChangeHandler}
+              />
+              <label htmlFor="companyName" className="label-name">
+                <span className="content-name">Company Name</span>
+              </label>
+            </div>
+            <div className="form">
+              <input
+                type="text"
+                name="companyDescription"
+                id="companyDescription"
+                required
+                autoComplete="off"
+                onChange={this.inputChangeHandler}
+              />
+              <label htmlFor="companyDescription" className="label-name">
+                <span className="content-name">Company Description</span>
+              </label>
+            </div>
+            <div className="form">
+              <input
+                type="text"
+                name="location"
+                id="location"
+                required
+                autoComplete="off"
+                onChange={this.inputChangeHandler}
+              />
+              <label htmlFor="location" className="label-name">
+                <span className="content-name">Company Location</span>
+              </label>
+            </div>
+            <div className="profile-picture-input">
+              <label class="custom-file-upload">
+                <input
+                  type="file"
+                  name="inpFile"
+                  id="inpFile"
+                  onChange={this.selectImageHandler}
+                  className="input-avatar"
+                />
+                Company Picture Upload
+              </label>
+              <div className="image-preview" id="imagePreview">
+                <img src="" alt="" className="image-preview__image" />
+                <span className="image-preview__default-text">
+                  Profile Picture
+                </span>
+              </div>
+            </div>
+            <button className="signup-login-button">Submit</button>
+          </form>
+        </div>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
       </div>
     );
   }

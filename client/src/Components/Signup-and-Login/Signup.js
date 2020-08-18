@@ -177,12 +177,16 @@ class Signup extends Component {
               </label>
             </div>
             <div className="profile-picture-input">
-              <input
-                type="file"
-                name="inpFile"
-                id="inpFile"
-                onChange={this.selectImageHandler}
-              />
+              <label class="custom-file-upload">
+                <input
+                  type="file"
+                  name="inpFile"
+                  id="inpFile"
+                  onChange={this.selectImageHandler}
+                  className="input-avatar"
+                />
+                Profile Picture Upload
+              </label>
               <div className="image-preview" id="imagePreview">
                 <img src="" alt="" className="image-preview__image" />
                 <span className="image-preview__default-text">
@@ -194,7 +198,7 @@ class Signup extends Component {
           </form>
         </div>
         {this.state.showPopUP ? (
-          <div id="verification-popUp" onClick={console.log('lool')}>
+          <div id="verification-popUp">
             <div id="popUp">
               <form onSubmit={this.createAccountHandler} id="inner-popUp">
                 <h2>Enter Verification Code</h2>
@@ -216,6 +220,10 @@ class Signup extends Component {
             </div>
           </div>
         ) : null}
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
       </div>
     );
   }

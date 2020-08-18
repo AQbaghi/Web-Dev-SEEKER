@@ -95,176 +95,183 @@ class CreateJobPost extends Component {
   render() {
     return (
       <div className="form-container">
-        <div></div>
-        <div>
+        <div className="form-inner-comtainer">
           <div>
-            <h1>Create a Job Post</h1>
-          </div>
+            <div>
+              <h1 className="form-title">Create a Job Post</h1>
+            </div>
 
-          <div className="form">
-            <input
-              type="text"
-              name="jobTitle"
-              id="jobTitle"
-              required
-              autoComplete="off"
-              onChange={this.inputChangeHandler}
-            />
-            <label htmlFor="jobTitle" className="label-name">
-              <span className="content-name">Job Title</span>
-            </label>
-          </div>
+            <div className="form">
+              <input
+                type="text"
+                name="jobTitle"
+                id="jobTitle"
+                required
+                autoComplete="off"
+                onChange={this.inputChangeHandler}
+              />
+              <label htmlFor="jobTitle" className="label-name">
+                <span className="content-name">Job Title</span>
+              </label>
+            </div>
 
-          <div className="textarea-form">
-            <label htmlFor="jobDescription" className="label-name">
-              <span className="content">Job Description</span>
-            </label>
-            <textarea
-              type="text"
-              id="jobDescription"
-              name="jobDescription"
-              required
-              autoComplete="off"
-              onChange={this.inputChangeHandler}
-            ></textarea>
-          </div>
+            <div className="textarea-form">
+              <label htmlFor="jobDescription" className="label-name">
+                <span className="content">Job Description</span>
+              </label>
+              <textarea
+                type="text"
+                id="jobDescription"
+                name="jobDescription"
+                required
+                autoComplete="off"
+                onChange={this.inputChangeHandler}
+              ></textarea>
+            </div>
 
-          <div className="form">
-            <input
-              type="text"
-              name="salary"
-              id="salary"
-              required
-              autoComplete="off"
-              onChange={this.inputChangeHandler}
-            />
-            <label htmlFor="salary" className="label-name">
-              <span className="content-name">Salary</span>
-            </label>
-          </div>
+            <div className="form">
+              <input
+                type="text"
+                name="salary"
+                id="salary"
+                required
+                autoComplete="off"
+                onChange={this.inputChangeHandler}
+              />
+              <label htmlFor="salary" className="label-name">
+                <span className="content-name">Salary</span>
+              </label>
+            </div>
 
-          <form onSubmit={this.submitHandler} className="form1">
-            <div className="key-words">
-              {this.state.keyWords.map((keyWord) => {
+            <form onSubmit={this.submitHandler} className="form1">
+              <div className="key-words">
+                {this.state.keyWords.map((keyWord) => {
+                  uniqueKey++;
+                  return (
+                    <li className="key-word" key={uniqueKey}>
+                      {keyWord}
+                    </li>
+                  );
+                })}
+              </div>
+
+              <div className="form">
+                <input
+                  type="text"
+                  name="keyWords"
+                  id="keyWords"
+                  required
+                  autoComplete="off"
+                  onChange={this.inputChangeHandler}
+                />
+                <label htmlFor="keyWords" className="label-name">
+                  <span className="content-name">
+                    Add Key Words to help with the Search
+                  </span>
+                </label>
+              </div>
+              <button className="description-button">Add Key Word</button>
+            </form>
+
+            <ul>
+              {this.state.requiredSkills.map((requiredSkill) => {
                 uniqueKey++;
                 return (
-                  <li className="key-word" key={uniqueKey}>
-                    {keyWord}
+                  <li className="item-in-list" key={uniqueKey}>
+                    {requiredSkill}
                   </li>
                 );
               })}
-            </div>
+            </ul>
 
-            <div className="form">
-              <input
-                type="text"
-                name="keyWords"
-                id="keyWords"
-                required
-                autoComplete="off"
-                onChange={this.inputChangeHandler}
-              />
-              <label htmlFor="keyWords" className="label-name">
-                <span className="content-name">
-                  Add Key Words to help with the Search
-                </span>
-              </label>
-            </div>
-            <button className="description-button">Add Key Word</button>
-          </form>
+            <form onSubmit={this.submitHandler} className="form2">
+              <div className="form">
+                <input
+                  type="text"
+                  name="requiredSkills"
+                  id="requiredSkills"
+                  required
+                  autoComplete="off"
+                  onChange={this.inputChangeHandler}
+                />
+                <label htmlFor="requiredSkills" className="label-name">
+                  <span className="content-name">Required Skills</span>
+                </label>
+              </div>
+              <button className="description-button">Add Requirement</button>
+            </form>
 
-          <ul>
-            {this.state.requiredSkills.map((requiredSkill) => {
-              uniqueKey++;
-              return (
-                <li className="item-in-list" key={uniqueKey}>
-                  {requiredSkill}
-                </li>
-              );
-            })}
-          </ul>
+            <ul>
+              {this.state.responsabilities.map((responsability) => {
+                uniqueKey++;
+                return (
+                  <li className="item-in-list" key={uniqueKey}>
+                    {responsability}
+                  </li>
+                );
+              })}
+            </ul>
 
-          <form onSubmit={this.submitHandler} className="form2">
-            <div className="form">
-              <input
-                type="text"
-                name="requiredSkills"
-                id="requiredSkills"
-                required
-                autoComplete="off"
-                onChange={this.inputChangeHandler}
-              />
-              <label htmlFor="requiredSkills" className="label-name">
-                <span className="content-name">Required Skills</span>
-              </label>
-            </div>
-            <button className="description-button">Add Requirement</button>
-          </form>
+            <form onSubmit={this.submitHandler} className="form3">
+              <div className="form">
+                <input
+                  type="text"
+                  name="responsabilities"
+                  id="responsabilities"
+                  required
+                  autoComplete="off"
+                  onChange={this.inputChangeHandler}
+                />
+                <label htmlFor="responsabilities" className="label-name">
+                  <span className="content-name">Responsabilities</span>
+                </label>
+              </div>
+              <button className="description-button">Add Responsability</button>
+            </form>
 
-          <ul>
-            {this.state.responsabilities.map((responsability) => {
-              uniqueKey++;
-              return (
-                <li className="item-in-list" key={uniqueKey}>
-                  {responsability}
-                </li>
-              );
-            })}
-          </ul>
+            <ul>
+              {this.state.advantages.map((advantage) => {
+                uniqueKey++;
+                return (
+                  <li className="item-in-list" key={uniqueKey}>
+                    {advantage}
+                  </li>
+                );
+              })}
+            </ul>
 
-          <form onSubmit={this.submitHandler} className="form3">
-            <div className="form">
-              <input
-                type="text"
-                name="responsabilities"
-                id="responsabilities"
-                required
-                autoComplete="off"
-                onChange={this.inputChangeHandler}
-              />
-              <label htmlFor="responsabilities" className="label-name">
-                <span className="content-name">Responsabilities</span>
-              </label>
-            </div>
-            <button className="description-button">Add Responsability</button>
-          </form>
-
-          <ul>
-            {this.state.advantages.map((advantage) => {
-              uniqueKey++;
-              return (
-                <li className="item-in-list" key={uniqueKey}>
-                  {advantage}
-                </li>
-              );
-            })}
-          </ul>
-
-          <form onSubmit={this.submitHandler} className="form4">
-            <div className="form">
-              <input
-                type="text"
-                name="advantages"
-                id="advantages"
-                required
-                autoComplete="off"
-                onChange={this.inputChangeHandler}
-              />
-              <label htmlFor="advantages" className="label-name">
-                <span className="content-name">Advantages</span>
-              </label>
-            </div>
-            <button className="description-button">Add Advantage</button>
-          </form>
-
-          <button
-            className="signup-login-button"
-            onClick={this.submitFormHandler}
-          >
-            Submit
-          </button>
+            <form onSubmit={this.submitHandler} className="form4">
+              <div className="form">
+                <input
+                  type="text"
+                  name="advantages"
+                  id="advantages"
+                  required
+                  autoComplete="off"
+                  onChange={this.inputChangeHandler}
+                />
+                <label htmlFor="advantages" className="label-name">
+                  <span className="content-name">Advantages</span>
+                </label>
+              </div>
+              <button className="description-button">Add Advantage</button>
+            </form>
+            <br></br>
+            <br></br>
+            <button
+              className="signup-login-button"
+              onClick={this.submitFormHandler}
+            >
+              Submit
+            </button>
+          </div>
         </div>
-        <div></div>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
       </div>
     );
   }

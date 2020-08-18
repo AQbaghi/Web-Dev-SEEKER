@@ -20,10 +20,7 @@ export const signupUserAccount = (formInfo, ownProps) => {
       }
     );
     const verificationCodeInDatabase = await verificationCodeInDatabasePromise.json();
-    console.log('hoping...');
-    console.log(verificationCodeInDatabase);
-    console.log(formInfo.email);
-    console.log(formInfo.verificationCode);
+
     if (
       verificationCodeInDatabase.verificationCode !== formInfo.verificationCode
     ) {
@@ -31,7 +28,6 @@ export const signupUserAccount = (formInfo, ownProps) => {
       return;
     }
 
-    console.log('wooohoooooooooooooooooooo');
     ownProps.history.push('/');
     const userAccountPropmise = await fetch('/api/users/signup', {
       headers: {
@@ -112,6 +108,7 @@ export const loginUserAccount = (formInfo, ownProps) => {
     }
 
     dispatch({ type: 'LOGIN_USER_ACCOUNT', userAccount });
+    dispatch(auth(userAccount.token));
     ownProps.history.push('/');
   };
 };
