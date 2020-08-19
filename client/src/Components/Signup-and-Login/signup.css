@@ -161,6 +161,18 @@ input[type='file'] {
   font-size: 1.6;
 }
 
+#popUp img {
+  width: 3rem;
+  height: 3rem;
+  opacity: 0.4;
+  position: absolute;
+  left: 29.5rem;
+  top: 0.3rem;
+}
+#popUp img:hover {
+  opacity: 0.8;
+}
+
 @media only screen and (max-width: 750px) {
   #popUp {
     padding: 1rem 2rem;

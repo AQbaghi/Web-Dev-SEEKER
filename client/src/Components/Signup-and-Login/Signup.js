@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { signupUserAccount } from '../../store/actions/userActions.js';
 import './signup.css';
+import cross from '../../images/cross.svg';
 
 class Signup extends Component {
   state = {
@@ -19,6 +20,12 @@ class Signup extends Component {
   inputChangeHandler = (e) => {
     this.setState({
       [e.target.id]: e.target.value,
+    });
+  };
+
+  closePopUp = () => {
+    this.setState({
+      showPopUP: false,
     });
   };
 
@@ -177,7 +184,7 @@ class Signup extends Component {
               </label>
             </div>
             <div className="profile-picture-input">
-              <label class="custom-file-upload">
+              <label className="custom-file-upload">
                 <input
                   type="file"
                   name="inpFile"
@@ -200,6 +207,9 @@ class Signup extends Component {
         {this.state.showPopUP ? (
           <div id="verification-popUp">
             <div id="popUp">
+              <div onClick={this.closePopUp}>
+                <img src={cross} className="cross-close" />
+              </div>
               <form onSubmit={this.createAccountHandler} id="inner-popUp">
                 <h2>Enter Verification Code</h2>
                 <div className="form">

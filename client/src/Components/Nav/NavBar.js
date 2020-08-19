@@ -96,7 +96,6 @@ const NavBar = ({ signup, login, logout, companyAuthenticated }) => {
             About
           </Link>
         </li>
-
         {logout ? LogoutLink() : null}
       </ul>
     </nav>

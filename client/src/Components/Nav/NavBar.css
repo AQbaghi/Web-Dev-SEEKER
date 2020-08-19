@@ -1,12 +1,13 @@
 .navbar {
   opacity: 1;
   width: 18rem;
-  background-color: rgba(62, 41, 77, 1);
+  background-color: rgba(82, 22, 221, 0.466);
   top: 0%;
   position: fixed;
   height: 100vh;
   transition: 0.6s;
   z-index: 2;
+  backdrop-filter: blur(15px);
 }
 
 .navbar ul {
@@ -28,9 +29,10 @@
 }
 
 .navbar ul li a:hover {
-  background-color: rgba(193, 36, 233, 0.418);
+  background-color: rgba(48, 3, 131, 0.589);
   padding: 2rem;
   font-size: 1.6rem;
+  backdrop-filter: blur(15px);
 }
 
 .navbar .navbar-button {
@@ -38,7 +40,7 @@
   position: fixed;
   width: 4rem;
   height: 4rem;
-  background-color: rgba(62, 41, 77, 1);
+  background-color: rgba(64, 17, 172, 0.863);
   border: solid 4px white;
   border-radius: 100%;
   left: 15.8rem;
@@ -59,7 +61,7 @@
 }
 
 .closed ul li a {
-  margin-left: 100rem;
+  margin-top: 55rem;
 }
 
 .closed .navbar-button {

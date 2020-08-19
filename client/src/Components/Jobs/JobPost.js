@@ -11,6 +11,13 @@ class JobPost extends Component {
   componentDidMount() {
     this.props.getJobPostDetails();
   }
+
+  applyToJobClickHandler = () => {
+    if (this.props.userAccount) {
+      this.props.history.push('/apply/' + this.props.match.params._id);
+    }
+    this.props.history.push('/Signup');
+  };
   render() {
     let showApplyButton = true;
     let num = 1;
@@ -21,7 +28,6 @@ class JobPost extends Component {
         this.props.jobPostDetails.companyInfo._id ===
         this.props.jobPostDetails.verifiedCompanyId._id
       ) {
-        console.log('ssssss');
         showApplyButton = false;
       }
     }
@@ -96,7 +102,9 @@ class JobPost extends Component {
           ) : null}
           <p>Postted at: {this.props.jobPostDetails.job.createdAt}</p>
           {showApplyButton ? (
-            <div className="apply-to-job">Apply Now</div>
+            <div className="apply-to-job" onClick={this.applyToJobClickHandler}>
+              Apply Now
+            </div>
           ) : (
             <div className="delete-job-post">Delete Job Post</div>
           )}
@@ -109,7 +117,7 @@ class JobPost extends Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     jobPostDetails: state.job.jobPostDetails,
-    authenticatedUser: state.job.userAccount,
+    userAccount: state.auth.userAccount,
   };
 };
 const mapDispatchToProps = (dispatch, ownProps) => {

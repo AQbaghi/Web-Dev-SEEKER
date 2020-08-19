@@ -1,10 +1,21 @@
 .dashbaurd {
-  background-image: url('../../images/background.jpg');
+  background-image: url('../../images/bg2.webp');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
-  height: 100vh;
+  height: 200vh;
+}
+
+.header {
+  width: 80%;
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+.header img {
+  width: 100%;
+  max-width: 80rem;
 }
 
 .job-search-form .header h1 {
@@ -13,6 +24,12 @@
   text-align: center;
   margin: 0;
   padding: 0;
+}
+
+#job-search-inputs {
+  position: fixed;
+  width: 100%;
+  top: 5rem;
 }
 
 .job-search-form .input-feild input,
@@ -24,11 +41,39 @@
   width: 80%;
   outline: none;
   margin: 1rem auto;
-  max-width: 32rem;
+  max-width: 28rem;
 }
 
 .job-search-form .input-feild input {
   font-size: 1.3rem;
   color: #222;
   padding: 0 1rem 0 1rem;
+}
+
+@media only screen and (max-width: 660px) {
+  .job-search-form .input-feild input {
+    font-size: 1rem;
+  }
+  .job-search-form .header h1 {
+    font-size: 2rem;
+  }
+  .job-search-form .input-feild input,
+  .job-search-form button {
+    border-radius: 30px;
+    height: 2.5rem;
+    width: 70%;
+    margin: 1rem auto;
+    max-width: 20rem;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .job-search-form .input-feild input,
+  .job-search-form button {
+    border-radius: 30px;
+    height: 2.5rem;
+    width: 55%;
+    margin: 1rem auto;
+    max-width: 18rem;
+  }
 }
