@@ -5,9 +5,6 @@ import { getJobDetailsFromDB } from '../../store/actions/jobActions.js';
 import defaultCompanyImage from '../../images/PRIVATE-LIMITE.jpg';
 
 class JobPost extends Component {
-  componentWillUnmount() {
-    this.props.getJobPostDetails();
-  }
   componentDidMount() {
     this.props.getJobPostDetails();
   }
@@ -19,14 +16,15 @@ class JobPost extends Component {
     this.props.history.push('/Signup');
   };
   render() {
+    console.log(this.props);
     let showApplyButton = true;
     let num = 1;
 
     //chexk if apply to job button should show up, or delete job post button should
-    if (this.props.jobPostDetails.verifiedCompanyId) {
+    if (this.props.userAccount.companyInfo) {
       if (
         this.props.jobPostDetails.companyInfo._id ===
-        this.props.jobPostDetails.verifiedCompanyId._id
+        this.props.userAccount.companyInfo._id
       ) {
         showApplyButton = false;
       }

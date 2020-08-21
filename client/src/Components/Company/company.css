@@ -19,7 +19,7 @@ textarea {
   height: 2.3rem;
   font-size: 0.7rem;
   color: white;
-  background-color: rgb(111, 47, 117);
+  background-color: #19222a;
   margin: 1.5rem 0 0 0.5rem;
 }
 
@@ -51,7 +51,7 @@ ul {
 .key-word {
   margin: 0.2rem;
   padding: 0.5rem;
-  background-color: rgb(122, 40, 129);
+  background-color: #5e7f9e;
   color: white;
   list-style: none;
 }

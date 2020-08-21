@@ -6,13 +6,8 @@
   width: 100%;
   height: 30vh;
   max-height: 16rem;
-  background: rgb(22, 1, 45);
-  background: linear-gradient(
-    90deg,
-    rgba(189, 0, 231, 1) 0%,
-    rgba(116, 0, 157, 1) 34%,
-    rgba(22, 1, 45, 1) 100%
-  );
+  background: #5e7f9e;
+  background: linear-gradient(90deg, #88a5bd 0%, #5e7f9e 45%, #19222a 100%);
   position: absolute;
   z-index: 0;
 
@@ -72,12 +67,12 @@
   text-align: center;
   font-size: 1.4rem;
   color: white;
-  background: rgb(102, 0, 139);
+  background: #88a5bd;
   padding: 0.4rem 0;
   transition: 0.4s;
 }
 .applied-jobs-button:hover {
-  background: rgb(169, 2, 230);
+  background: #5e7f9e;
   cursor: pointer;
   transition: 0.4s;
 }
@@ -100,7 +95,7 @@
   transition: 0.4s;
 }
 .applied-jobs-list a:hover {
-  box-shadow: 0 2px 3px 0 rgb(121, 0, 219);
+  box-shadow: 0 2px 3px 0 #5e7f9e;
   transition: 0.4s;
 }
 .applied-jobs-list-closed {
@@ -122,14 +117,14 @@
   text-align: center;
   font-size: 2rem;
   text-decoration: none;
-  background-color: rgb(102, 0, 139);
+  background-color: #5e7f9e;
   color: white;
   border-radius: 4px;
   padding: 0.2rem 0.6rem;
   transition: 0.4s;
 }
 .profileToStartCompanyLink:hover {
-  background-color: rgb(169, 2, 230);
+  background-color: #19222a;
   transition: 0.4s;
 }
 
@@ -140,7 +135,7 @@
     grid-auto-rows: minmax(90vh, auto);
 
     text-decoration: none;
-    color: #333;
+    color: #5e7f9e;
     transition: 0.4s;
 
     margin: 0rem 0rem 1rem 0;

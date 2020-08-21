@@ -41,5 +41,6 @@ export const getMyCompanyInfo = async (token) => {
     method: 'GET',
   });
   const companyInfo = await usersCompanyPropmise.json();
+  console.log(companyInfo);
   return companyInfo;
 };

@@ -14,7 +14,7 @@ body {
 .search-bar {
   width: 100%;
   height: 4rem;
-  background-color: rgba(70, 7, 116, 0.78);
+  background-color: #19222a;
 }
 
 .search {
@@ -27,7 +27,7 @@ body {
 
 .searchTerm {
   width: 100%;
-  border: 3px solid rgba(196, 17, 212, 1);
+  border: 3px solid #19222a;
   border-right: none;
   padding: 5px;
   height: 30px;
@@ -37,7 +37,7 @@ body {
 }
 
 .searchTerm:focus {
-  color: rgba(196, 17, 212, 1);
+  color: #19222a;
   font-size: 16px;
   transition: 0.2s;
   text-align: unset;
@@ -46,8 +46,8 @@ body {
 .searchButton {
   width: 60px;
   height: 46px;
-  border: 1px solid rgba(196, 17, 212, 1);
-  background: rgba(196, 17, 212, 1);
+  border: 1px solid #19222a;
+  background: #19222a;
   text-align: center;
   color: #fff;
   border-radius: 0 5px 5px 0;
@@ -57,7 +57,7 @@ body {
 
 .searchButton:focus {
   outline: none;
-  background-color: rgb(141, 8, 153);
+  background-color: #19222a;
 }
 
 .searchButton i:hover {
@@ -78,36 +78,12 @@ body {
   width: 4rem;
 }
 
-@media only screen and (min-width: 600px) {
-  .search {
-    width: 100%;
-    position: relative;
-    display: flex;
-    left: 96%;
-  }
-}
-
 /* jobs dashbaurd */
 
 .jobs-dashbaurd {
   display: grid;
   grid-template-columns: 18rem auto;
   grid-auto-rows: minmax(90vh, auto);
-}
-
-@media only screen and (max-width: 600px) {
-  .jobs-dashbaurd {
-    display: block;
-  }
-  .previous-searches {
-    border: black 1px solid;
-    position: absolute;
-    opacity: 0;
-    width: 0px;
-  }
-  .job-postings {
-    min-height: 90vh;
-  }
 }
 
 /* the job post inself */
@@ -125,11 +101,12 @@ body {
 
 .job-post:hover {
   transition: 0.4s;
-  box-shadow: rgb(130, 5, 141) 0px 1px 10px 0px;
+  box-shadow: #19222a 0px 1px 10px 0px;
 }
 
 #company-info {
   display: block;
+  padding-left: 1.6rem;
 }
 
 .jobPost-header {
@@ -169,12 +146,44 @@ body {
   .job-post {
     padding-left: 4rem;
   }
+  .jobs-dashbaurd {
+    display: block;
+  }
+  .previous-searches {
+    border: black 1px solid;
+    position: absolute;
+    opacity: 0;
+    width: 0px;
+  }
+  .job-postings {
+    min-height: 90vh;
+  }
+  #company-info {
+    padding-left: 0rem;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .job-post {
+    padding-left: 4rem;
+  }
+  #company-info {
+    padding-left: 0rem;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .search {
+    width: 100%;
+    position: relative;
+    display: flex;
+    left: 96%;
+  }
 }
 
 /* font styles */
 
 #jobTitle-jobPost {
-  color: rgb(49, 1, 71);
+  color: #19222a;
 }
 
 .apply-to-job {
@@ -184,12 +193,12 @@ body {
   font-size: 1.2rem;
   border: none;
   color: white;
-  background: rgba(70, 7, 116, 0.78);
+  background: #19222a;
   text-align: center;
   transition: 0.4s;
 }
 .apply-to-job:hover {
-  background: rgb(101, 17, 161);
+  background: #88a5bd;
   transition: 0.4s;
   cursor: pointer;
 }
@@ -200,12 +209,12 @@ body {
   font-size: 1.2rem;
   border: none;
   color: white;
-  background: rgba(70, 7, 116, 0.78);
+  background: #19222a;
   text-align: center;
   transition: 0.4s;
 }
 .delete-job-post:hover {
-  background: rgb(101, 17, 161);
+  background: #19222a;
   transition: 0.4s;
   cursor: pointer;
 }

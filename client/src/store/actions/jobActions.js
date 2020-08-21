@@ -41,11 +41,10 @@ export const getJobDetailsFromDB = (ownProps) => {
       `/api/job/info/${ownProps.match.params._id}`
     );
     const jobPostDetails = await jobPromise.json();
-    let companyId = await getMyCompanyInfo(document.cookie);
-    console.log();
+
     dispatch({
       type: 'GET_JOB_POST_DETAILS',
-      jobPostDetails: { ...jobPostDetails, verifiedCompanyId: companyId },
+      jobPostDetails,
     });
   };
 };

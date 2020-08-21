@@ -89,7 +89,7 @@ input[type='file'] {
 .form input:valid + .label-name .content-name {
   transform: translateY(-150%);
   font-size: 14px;
-  color: #5fa8d3;
+  color: #88a5bd;
 }
 
 .form input:focus + .label-name::after,
@@ -103,7 +103,7 @@ input[type='file'] {
   height: 2.5rem;
   font-size: 20px;
   color: white;
-  background-color: rgb(130, 5, 141);
+  background-color: #5e7f9e;
   margin: 1.5rem 0 0 0.5rem;
 }
 

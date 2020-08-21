@@ -111,7 +111,7 @@ class StartCompany extends Component {
               </label>
             </div>
             <div className="profile-picture-input">
-              <label class="custom-file-upload">
+              <label className="custom-file-upload">
                 <input
                   type="file"
                   name="inpFile"
